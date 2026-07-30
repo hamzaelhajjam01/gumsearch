@@ -1,0 +1,368 @@
+[
+  {
+    "product_name": "The Good Parts of AWS",
+    "creator_name": "Daniel Vassallo",
+    "category": "Education",
+    "price": 10.0,
+    "estimated_sales": 15659,
+    "estimated_revenue": 156590.0,
+    "avg_rating": 4.7,
+    "total_reviews": 132,
+    "star_4_percent": 8,
+    "star_3_percent": 2,
+    "star_2_percent": 1,
+    "opportunity_tags": [
+      "High Revenue",
+      "Niche Leader",
+      "Strong Social Proof"
+    ],
+    "ai_gap_analysis": "While the guide provides a solid pragmatic overview, some readers express a desire for deeper technical walkthroughs and hands-on code examples. Competitors can fill this gap by creating updated, interactive course modules that cover newer AWS services and complex real-world architectures.",
+    "product_url": "https://dvassallo.gumroad.com/l/aws-good-parts"
+  },
+  {
+    "product_name": "Small Bets - Lifetime Membership",
+    "creator_name": "Daniel Vassallo",
+    "category": "Business",
+    "price": 450.0,
+    "estimated_sales": 7392,
+    "estimated_revenue": 3326400.0,
+    "avg_rating": 4.9,
+    "total_reviews": 189,
+    "star_4_percent": 2,
+    "star_3_percent": 0,
+    "star_2_percent": 1,
+    "opportunity_tags": [
+      "High Revenue",
+      "Niche Leader",
+      "Strong Community"
+    ],
+    "ai_gap_analysis": "While the premium price point yields impressive lifetime revenue, price-sensitive creators may seek lower-cost or tiered subscription alternatives. Competitors can target this gap by offering affordable, execution-focused micro-courses paired with specialized peer groups.",
+    "product_url": "https://dvassallo.gumroad.com/l/small-bets"
+  },
+  {
+    "product_name": "Notion Life OS - Ultimate Second Brain Life Operating System",
+    "creator_name": "Hashim | Notion4Management",
+    "category": "Education",
+    "price": 49.0,
+    "estimated_sales": 0,
+    "estimated_revenue": 0.0,
+    "avg_rating": 5.0,
+    "total_reviews": 3,
+    "star_4_percent": 0,
+    "star_3_percent": 0,
+    "star_2_percent": 0,
+    "opportunity_tags": [
+      "Premium Pricing",
+      "High Rating / Low Volume",
+      "Niche Product"
+    ],
+    "ai_gap_analysis": "While the product holds perfect early ratings, comprehensive Notion operating systems often overwhelm buyers with overly complex setups and steep learning curves. Competitors can gain market share by offering modular, beginner-friendly versions paired with step-by-step video onboarding guides.",
+    "product_url": "https://gumroad.com/l/notion-life-os"
+  },
+  {
+    "product_name": "Chat GPT Prompts for Content Writer",
+    "creator_name": "Akanksha",
+    "category": "Education",
+    "price": 0.0,
+    "estimated_sales": 0,
+    "estimated_revenue": 0.0,
+    "avg_rating": 5.0,
+    "total_reviews": 0,
+    "star_4_percent": 0,
+    "star_3_percent": 0,
+    "star_2_percent": 0,
+    "opportunity_tags": [
+      "Free Lead Magnet",
+      "Competitive Niche"
+    ],
+    "ai_gap_analysis": "As free generic ChatGPT prompt packs flood the market, buyers often struggle with vague or unrefined outputs. Competitors can differentiate by providing advanced, role-specific prompts paired with real-world output examples and custom tone-of-voice frameworks.",
+    "product_url": "https://gumroad.com/l/chatgpt-prompts"
+  },
+  {
+    "product_name": "Notion Complete Bundle",
+    "creator_name": "Heyismail",
+    "category": "Templates",
+    "price": 0.0,
+    "estimated_sales": 110,
+    "estimated_revenue": 0.0,
+    "avg_rating": 5.0,
+    "total_reviews": 3,
+    "star_4_percent": 0,
+    "star_3_percent": 0,
+    "star_2_percent": 0,
+    "opportunity_tags": [
+      "Free Lead Magnet",
+      "Monetization Opportunity",
+      "Notion Template"
+    ],
+    "ai_gap_analysis": "While the product successfully uses a free price point to drive downloads and earn top ratings, it fails to monetize the user base effectively. Competitors can capture market share by offering paid, feature-rich Notion setups paired with video tutorials and automated workflows.",
+    "product_url": "https://gumroad.com/l/vgcmfi"
+  },
+  {
+    "product_name": "The UGC Pitching System \u2728\ud83d\udcb8",
+    "creator_name": "Rylie Lane",
+    "category": "Templates",
+    "price": 47.0,
+    "estimated_sales": 0,
+    "estimated_revenue": 0.0,
+    "avg_rating": 5.0,
+    "total_reviews": 0,
+    "star_4_percent": 0,
+    "star_3_percent": 0,
+    "star_2_percent": 0,
+    "opportunity_tags": [
+      "UGC Creator Tools",
+      "Cold Outreach Templates",
+      "High-Converting Pitch"
+    ],
+    "ai_gap_analysis": "While high response rate claims attract aspiring creators, static pitch templates often lack customization options for specific industry niches. Competitors can differentiate by providing automated follow-up sequences and contract negotiation scripts alongside basic email pitch structures.",
+    "product_url": "https://gumroad.com/l/xfovz"
+  },
+  {
+    "product_name": "The BCBA Career Transition Toolkit (CTT)",
+    "creator_name": "Mariah Padilla",
+    "category": "Templates",
+    "price": 147.0,
+    "estimated_sales": 20,
+    "estimated_revenue": 2940.0,
+    "avg_rating": 5.0,
+    "total_reviews": 0,
+    "star_4_percent": 0,
+    "star_3_percent": 0,
+    "star_2_percent": 0,
+    "opportunity_tags": [
+      "Niche Career Pivot",
+      "High Ticket Template"
+    ],
+    "ai_gap_analysis": "While the toolkit addresses a highly specific career pivot for BCBAs, buyers often seek more than static templates, such as 1-on-1 resume reviews or interview coaching modules to justify the $147 price point. Competitors can capitalize on this by offering lower-priced entry points or including interactive elements like video walkthroughs and personalized transition roadmaps.",
+    "product_url": "https://gumroad.com/l/qxxckx"
+  },
+  {
+    "product_name": "\ud83c\udf1fLifetime Membership \u2013 One Time Payment, Lifetime Access \ud83d\udc8e ",
+    "creator_name": "Hams AI Tech",
+    "category": "Templates",
+    "price": 4999.99,
+    "estimated_sales": 0,
+    "estimated_revenue": 0.0,
+    "avg_rating": 5.0,
+    "total_reviews": 0,
+    "star_4_percent": 0,
+    "star_3_percent": 0,
+    "star_2_percent": 0,
+    "opportunity_tags": [
+      "High Ticket Price",
+      "Zero Sales Traction"
+    ],
+    "ai_gap_analysis": "The exorbitant price tag of $4,999.99 combined with zero existing sales or social proof creates a massive trust barrier for potential buyers. Competitors can easily capture market share by offering flexible tier options, free sample templates, or transparent monthly subscriptions.",
+    "product_url": "https://gumroad.com/l/jxydga"
+  },
+  {
+    "product_name": "Headquarters Notion Productivity Template",
+    "creator_name": "Productive Setups",
+    "category": "Templates",
+    "price": 79.0,
+    "estimated_sales": 0,
+    "estimated_revenue": 0.0,
+    "avg_rating": 5.0,
+    "total_reviews": 194,
+    "star_4_percent": 1,
+    "star_3_percent": 0,
+    "star_2_percent": 0,
+    "opportunity_tags": [
+      "High Price Point",
+      "Notion Ecosystem",
+      "Productivity Systems"
+    ],
+    "ai_gap_analysis": "At a premium $79 price point, there is a strong opportunity to capture price-sensitive buyers with simplified, lower-cost Notion productivity alternatives. Additionally, creators can differentiate by offering specialized onboarding support or pre-built integrations that address the steep learning curve often associated with comprehensive Notion operating systems.",
+    "product_url": "https://gumroad.com/l/hpqcg"
+  },
+  {
+    "product_name": "Notioly - 500+ Notion-style Illustrations",
+    "creator_name": "Mary Amato",
+    "category": "Templates",
+    "price": 39.0,
+    "estimated_sales": 0,
+    "estimated_revenue": 0.0,
+    "avg_rating": 5.0,
+    "total_reviews": 181,
+    "star_4_percent": 0,
+    "star_3_percent": 0,
+    "star_2_percent": 0,
+    "opportunity_tags": [
+      "Notion Ecosystem",
+      "Design Assets",
+      "High Demand"
+    ],
+    "ai_gap_analysis": "While static illustration packs are popular, users often struggle with matching specific brand color palettes or finding animated variations for dynamic websites. Competitors can gain an edge by offering interactive color-customization tools, vector source files, or direct Notion integration plugins.",
+    "product_url": "https://gumroad.com/l/dxsgg"
+  },
+  {
+    "product_name": "The Solopreneur Operating System",
+    "creator_name": "Huy Nguyen",
+    "category": "Templates",
+    "price": 149.99,
+    "estimated_sales": 269,
+    "estimated_revenue": 40347.310000000005,
+    "avg_rating": 5.0,
+    "total_reviews": 12,
+    "star_4_percent": 0,
+    "star_3_percent": 0,
+    "star_2_percent": 0,
+    "opportunity_tags": [
+      "High Ticket Template",
+      "Workflow Automation",
+      "Solopreneur Tools"
+    ],
+    "ai_gap_analysis": "While the product commands a premium price point with high revenue, comprehensive operating systems often suffer from steep learning curves and rigid setup structures. Competitors can capture market share by offering a modular alternative featuring built-in AI automation hooks and streamlined onboarding support at a more accessible entry price.",
+    "product_url": "https://gumroad.com/l/xhrdb"
+  },
+  {
+    "product_name": "Gamified Life OS: Solo Leveling",
+    "creator_name": "Kevechino",
+    "category": "Templates",
+    "price": 0.0,
+    "estimated_sales": 1834,
+    "estimated_revenue": 0.0,
+    "avg_rating": 5.0,
+    "total_reviews": 74,
+    "star_4_percent": 3,
+    "star_3_percent": 0,
+    "star_2_percent": 0,
+    "opportunity_tags": [
+      "Fast Growing"
+    ],
+    "ai_gap_analysis": "Gamified Life OS",
+    "product_url": "https://gumroad.com/l/mcztuh"
+  },
+  {
+    "product_name": "Storyteller OS",
+    "creator_name": "StoryFlint",
+    "category": "Templates",
+    "price": 97.0,
+    "estimated_sales": 0,
+    "estimated_revenue": 0.0,
+    "avg_rating": 4.8,
+    "total_reviews": 23,
+    "star_4_percent": 0,
+    "star_3_percent": 0,
+    "star_2_percent": 0,
+    "opportunity_tags": [
+      "Fast Growing"
+    ],
+    "ai_gap_analysis": "The ultimate Notion system for writers to organize their notes and ideas for characters, plot, world building, themes, and more.",
+    "product_url": "https://gumroad.com/l/iuumxf"
+  },
+  {
+    "product_name": "Our Empire - Notion System",
+    "creator_name": "Our Empire",
+    "category": "Templates",
+    "price": 44.99,
+    "estimated_sales": 0,
+    "estimated_revenue": 0.0,
+    "avg_rating": 5.0,
+    "total_reviews": 3,
+    "star_4_percent": 0,
+    "star_3_percent": 0,
+    "star_2_percent": 0,
+    "opportunity_tags": [
+      "Fast Growing"
+    ],
+    "ai_gap_analysis": "Strong market presence with positive buyer reviews.",
+    "product_url": "https://gumroad.com/l/flmgzy"
+  },
+  {
+    "product_name": "Knowledge Worker Kit and Private Community (BETA)",
+    "creator_name": "S\u00e9bastien Dubois",
+    "category": "Templates",
+    "price": 249.99,
+    "estimated_sales": 129,
+    "estimated_revenue": 32248.710000000003,
+    "avg_rating": 5.0,
+    "total_reviews": 7,
+    "star_4_percent": 0,
+    "star_3_percent": 0,
+    "star_2_percent": 0,
+    "opportunity_tags": [
+      "Fast Growing"
+    ],
+    "ai_gap_analysis": "Lifetime access to the private community, the guide, the templates, and events",
+    "product_url": "https://gumroad.com/l/pyjrr"
+  },
+  {
+    "product_name": "365 Substack Notes Templates",
+    "creator_name": "Write \u2022 Build \u2022 Scale",
+    "category": "Templates",
+    "price": 47.0,
+    "estimated_sales": 0,
+    "estimated_revenue": 0.0,
+    "avg_rating": 4.9,
+    "total_reviews": 16,
+    "star_4_percent": 6,
+    "star_3_percent": 0,
+    "star_2_percent": 0,
+    "opportunity_tags": [
+      "Fast Growing"
+    ],
+    "ai_gap_analysis": "Strong market presence with positive buyer reviews.",
+    "product_url": "https://gumroad.com/l/ficfih"
+  },
+  {
+    "product_name": "The Complete Cavalry Guide",
+    "creator_name": "Heyalisa Motion",
+    "category": "Templates",
+    "price": 25.0,
+    "estimated_sales": 820,
+    "estimated_revenue": 20500.0,
+    "avg_rating": 4.9,
+    "total_reviews": 20,
+    "star_4_percent": 0,
+    "star_3_percent": 5,
+    "star_2_percent": 0,
+    "opportunity_tags": [
+      "Niche Motion Design",
+      "High Revenue Margin",
+      "Fast Growing"
+    ],
+    "ai_gap_analysis": "While ratings are overwhelmingly high, the slight presence of mid-tier reviews suggests a need for deeper step-by-step guidance for absolute beginners and more frequent content updates for newer software versions. Competitors have an opportunity to offer modular project files combined with advanced procedural animation workflows to capture underserved creators.",
+    "product_url": "https://gumroad.com/l/dybmn"
+  },
+  {
+    "product_name": "The VB Toolkit ($50 off)",
+    "creator_name": "LC Media Studio - by Mat Aleixo",
+    "category": "Templates",
+    "price": 79.0,
+    "estimated_sales": 30,
+    "estimated_revenue": 2370.0,
+    "avg_rating": 5.0,
+    "total_reviews": 0,
+    "star_4_percent": 0,
+    "star_3_percent": 0,
+    "star_2_percent": 0,
+    "opportunity_tags": [
+      "Notion Template",
+      "High-Ticket Digital Product",
+      "Workflow Automation"
+    ],
+    "ai_gap_analysis": "While sold at a premium price point of $79, reliance on static Notion templates creates an opportunity for competitors to offer interactive, dedicated micro-SaaS tools or lower-cost starter alternatives. Additionally, incorporating native automation scripts and video walk-throughs could resolve common onboarding friction points that static template buyers often face.",
+    "product_url": "https://gumroad.com/l/tvhvs"
+  },
+  {
+    "product_name": "AI Voice Assistant - Complete Setup & Build Guide (Build Your Own Jarvis)",
+    "creator_name": "DHAIBuilds",
+    "category": "Templates",
+    "price": 17.0,
+    "estimated_sales": 0,
+    "estimated_revenue": 0.0,
+    "avg_rating": 5.0,
+    "total_reviews": 1,
+    "star_4_percent": 0,
+    "star_3_percent": 0,
+    "star_2_percent": 0,
+    "opportunity_tags": [
+      "AI Voice Assistants",
+      "No-Code Automation"
+    ],
+    "ai_gap_analysis": "While beginner-friendly guides attract non-technical users, many buyers encounter issues with fast-changing API dependencies and limited post-setup customization. Competitors can capture market share by offering modular, auto-updating templates alongside dedicated troubleshooting support for custom voice integrations.",
+    "product_url": "https://gumroad.com/l/fhnnc"
+  }
+]

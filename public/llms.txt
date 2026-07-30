@@ -1,0 +1,20 @@
+# GumSearch Pro & Free Creator Finder
+> AI-Powered Digital Product Intelligence & Storefront Analytics for Gumroad
+
+## Overview
+GumSearch is a competitor intelligence and creator analytics platform for Gumroad storefronts. It indexes over 100,000+ digital products, ranking creators by verified customer review volume, catalog size, and estimated sales velocity.
+
+## Core Features & Tools
+- **Free Creator Finder**: Public tool to rank and discover top Gumroad creators by niche (Notion, AI Prompts, UI Kits, SaaS, E-books).
+- **Competitor Analytics**: Analyzes product pricing models, unit sales proxies, and customer dissatisfaction gaps.
+- **Mixed Reviews Filter**: Filters high-revenue products with sub-4.0 star ratings to identify high-demand market opportunities.
+- **High-Curiosity Teardown Reports**: Generates automated market audit scores and buyer complaint breakdowns.
+
+## Pricing
+- **Free Plan**: Unlimited public creator finder searches.
+- **GumSearch Pro Lifetime Access Pass**: $99.99 one-time payment for full database export, customer complaint teardowns, and historical sales analytics.
+
+## Canonical Resources
+- Main Platform: https://gumsearch.com/
+- Free Creator Tool: https://gumsearch.com/creator-finder
+- Sitemap: https://gumsearch.com/sitemap.xml

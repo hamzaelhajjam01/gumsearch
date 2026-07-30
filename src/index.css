@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .font-sans {
+    font-family: 'Outfit', sans-serif;
+  }
+  .font-serif-heading {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.08;
+  }
+  .font-serif-italic {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ============================================================================ */
+/* ARTICLE READER TYPOGRAPHY & LAYOUT SYSTEM */
+/* ============================================================================ */
+
+.article-body {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #d4d4d8;
+}
+
+.article-body h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+  padding-bottom: 0.5rem;
+}
+
+.article-body h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #c084fc;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+
+.article-body h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #e9d5ff;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.article-body p {
+  margin-bottom: 1.25rem;
+  color: #e4e4e7;
+}
+
+.article-body strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.article-body em {
+  color: #f472b6;
+  font-style: italic;
+}
+
+.article-body a {
+  color: #ec4899;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.article-body a:hover {
+  color: #f472b6;
+}
+
+.article-body ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+  space-y: 0.5rem;
+}
+
+.article-body ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+  space-y: 0.5rem;
+}
+
+.article-body li {
+  margin-bottom: 0.5rem;
+  color: #e4e4e7;
+}
+
+.article-body blockquote {
+  border-left: 4px solid #a855f7;
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: #c084fc;
+  background-color: rgba(168, 85, 247, 0.08);
+  padding: 1rem;
+  border-radius: 0.75rem;
+}
+
+.article-body .geo-takeaway {
+  background: linear-gradient(135deg, rgba(88, 28, 135, 0.35), rgba(15, 23, 42, 0.8));
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.15);
+}
+
+.article-body .geo-takeaway-title {
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: #fde047;
+  display: flex;
+  items-center: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.article-body .geo-takeaway p {
+  font-size: 0.875rem;
+  margin-bottom: 0.35rem;
+  color: #e9d5ff;
+}
+
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+}
+
+.article-body th, .article-body td {
+  border: 1px solid rgba(63, 63, 70, 0.8);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.article-body th {
+  background-color: rgba(24, 24, 27, 0.9);
+  color: #a855f7;
+  font-weight: 700;
+}
+
+.article-body td {
+  background-color: rgba(9, 9, 11, 0.6);
+  color: #e4e4e7;
+}
