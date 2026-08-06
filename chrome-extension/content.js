@@ -153,13 +153,14 @@
         </div>
       </div>
 
-      <a href="https://gumsearch.com/dashboard" target="_blank" class="gumsearch-cta-btn">
+      <a href="https://gumsearch.vercel.app" target="_blank" class="gumsearch-cta-btn">
         <span>Explore 100,000+ Products on GumSearch →</span>
       </a>
 
       <div class="gumsearch-backlink-footer">
-        Powered by <a href="https://gumsearch.com" target="_blank">GumSearch.com</a> Live Analytics
+        Powered by <a href="https://gumsearch.vercel.app" target="_blank">GumSearch</a> Live Analytics
       </div>
+
     `;
   }
 
