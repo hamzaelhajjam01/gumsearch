@@ -3,7 +3,8 @@
   "name": "GumSearch - Gumroad Product Analytics",
   "version": "1.0.0",
 
-  "description": "Instant live creator rankings, sales power, review analytics, and competitor search directly inside Gumroad. Powered by GumSearch.com",
+  "description": "Live creator rankings, sales power, review analytics, and competitor search directly inside Gumroad.",
+
   "permissions": [
     "activeTab",
     "storage"
