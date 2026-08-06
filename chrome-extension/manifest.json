@@ -1,7 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "GumSearch - Gumroad Product & Revenue Intelligence",
+  "name": "GumSearch - Gumroad Product Analytics",
   "version": "1.0.0",
+
   "description": "Instant live creator rankings, sales power, review analytics, and competitor search directly inside Gumroad. Powered by GumSearch.com",
   "permissions": [
     "activeTab",
