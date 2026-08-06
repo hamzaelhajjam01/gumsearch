@@ -6,7 +6,6 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SharedNavbar } from './SharedNavbar';
-import { CreatorFinderTool } from './CreatorFinderTool';
 
 interface LandingPageProps {
   onLaunchApp: () => void;
@@ -379,24 +378,82 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      {/* PUBLIC SEO TOOL & CREATOR SEARCH LEADERBOARD SECTION */}
-      <section id="free-tool" aria-labelledby="seo-tool-heading" className="py-16 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 relative z-20">
-        <div className="text-center space-y-4 mb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500/10 to-purple-500/10 border border-pink-500/20 text-pink-400 text-xs font-bold font-mono">
-            <Sparkles className="w-3.5 h-3.5 text-pink-400" />
-            <span>Free Instant Competitor Research Tool</span>
-          </div>
-          <h2 id="seo-tool-heading" className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight bg-gradient-to-r from-white via-zinc-100 to-zinc-400 bg-clip-text text-transparent font-sans">
-            Rank & Spy on Top Gumroad Creators by Niche
-          </h2>
-          <p className="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto font-sans leading-relaxed">
-            Our free public analytics engine ranks the highest-converting Gumroad storefronts by verified customer review volume, active product count, and revenue indicators. Discover who dominates your market in real-time.
-          </p>
-        </div>
+      {/* CHROME EXTENSION SHOWCASE SECTION */}
+      <section id="extension" aria-labelledby="extension-heading" className="py-16 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 relative z-20">
+        <div className={`p-8 sm:p-12 rounded-3xl border relative overflow-hidden backdrop-blur-xl ${
+          isLight
+            ? 'bg-gradient-to-br from-purple-50 via-white to-pink-50 border-purple-200 shadow-xl shadow-purple-900/5'
+            : 'bg-gradient-to-br from-purple-950/40 via-[#0c0c0e] to-pink-950/30 border-purple-500/30 shadow-2xl shadow-purple-950/50'
+        }`}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="space-y-4 text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold font-mono">
+                <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+                <span>Official Chrome Extension</span>
+              </div>
+              <h2 id="extension-heading" className={`text-3xl sm:text-4xl font-black tracking-tight font-sans ${
+                isLight ? 'text-slate-900' : 'text-white'
+              }`}>
+                Spy on Gumroad Competitors Directly as You Browse
+              </h2>
+              <p className={`text-sm sm:text-base font-sans leading-relaxed ${
+                isLight ? 'text-slate-600' : 'text-zinc-400'
+              }`}>
+                Inject real-time sales volume estimates, verified review power, and pricing insights directly into any Gumroad storefront or product page.
+              </p>
+              <div className="pt-2 flex flex-wrap items-center gap-3">
+                <button
+                  onClick={() => { if (onOpenFunnel) onOpenFunnel(); else onLaunchApp(); }}
+                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-sm shadow-lg shadow-purple-600/30 hover:scale-105 transition-all cursor-pointer flex items-center gap-2"
+                >
+                  <span>Install Chrome Extension</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={onLaunchApp}
+                  className={`px-6 py-3 rounded-xl font-bold text-sm border transition-all cursor-pointer ${
+                    isLight 
+                      ? 'bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-300'
+                      : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border-zinc-700'
+                  }`}
+                >
+                  Launch Full SaaS Dashboard
+                </button>
+              </div>
+            </div>
 
-        {/* Embedded CreatorFinderTool */}
-        <div className="shadow-2xl shadow-pink-500/10 rounded-3xl border border-zinc-800/80 bg-[#0c0c0e]/90 backdrop-blur-xl">
-          <CreatorFinderTool theme={theme} isPublicLanding={true} onOpenFunnel={onOpenFunnel} />
+            {/* Feature List Preview Card */}
+            <div className={`p-6 rounded-2xl border ${
+              isLight ? 'bg-white border-slate-200 shadow-md' : 'bg-zinc-900/80 border-zinc-800'
+            }`}>
+              <div className="text-xs font-mono font-bold text-purple-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                <Zap className="w-4 h-4 text-amber-400" /> Extension Features
+              </div>
+              <div className="space-y-3 text-xs">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-white">Live Gumroad Page Injection</span>
+                    <p className="text-zinc-400">View sales power & estimated monthly revenue right on gumroad.com</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-white">In-Extension Search</span>
+                    <p className="text-zinc-400">Search 100,000+ products directly from your browser extension bar</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-white">$4,000/mo Monetization Playbook</span>
+                    <p className="text-zinc-400">Unlock high-converting digital product structures and pricing templates</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -714,16 +771,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-4xl mx-auto">
-          {/* Free Starter Plan */}
+          {/* Free Chrome Extension Plan */}
           <div className={`p-8 sm:p-10 rounded-3xl border flex flex-col justify-between ${
             isLight ? 'bg-white border-slate-200 shadow-xl' : 'bg-zinc-900/40 border-zinc-800/80 shadow-xl'
           }`}>
             <div>
-              <div className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-zinc-800 text-zinc-300 mb-4">
-                Starter Explorer
+              <div className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30 mb-4">
+                ⚡ Free Chrome Extension
               </div>
-              <h3 className="text-2xl font-bold text-zinc-100">Free Forever</h3>
-              <p className="mt-2 text-xs text-zinc-400">Perfect for exploring the live Gumroad database & checking basic metrics.</p>
+              <h3 className="text-2xl font-bold text-zinc-100">Free Extension</h3>
+              <p className="mt-2 text-xs text-zinc-400">Spy on Gumroad competitors & live sales metrics directly inside Chrome.</p>
 
               <div className="mt-6 flex items-baseline gap-1">
                 <span className="text-4xl font-black text-zinc-100">$0</span>
@@ -733,32 +790,41 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <ul className="mt-8 space-y-3 text-xs text-zinc-300">
                 <li className="flex items-center gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  Access 1,000+ top Gumroad products
+                  Live sales power & revenue estimates on gumroad.com
                 </li>
                 <li className="flex items-center gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  Basic category & price filtering
+                  In-extension 100,000+ creator & product search
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  Real-time Google SERP rankings & review counts
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  Persistent search keyword memory
                 </li>
                 <li className="flex items-center gap-2.5 text-zinc-500">
                   <span className="w-4 h-4 flex items-center justify-center font-bold text-rose-500">✕</span>
-                  AI Gap & Opportunity Teardowns
+                  AI Gap & Opportunity Teardowns (Pro)
                 </li>
                 <li className="flex items-center gap-2.5 text-zinc-500">
                   <span className="w-4 h-4 flex items-center justify-center font-bold text-rose-500">✕</span>
-                  Ground-Truth Revenue Multipliers
+                  Ground-Truth Revenue Multipliers & Trends (Pro)
                 </li>
                 <li className="flex items-center gap-2.5 text-zinc-500">
                   <span className="w-4 h-4 flex items-center justify-center font-bold text-rose-500">✕</span>
-                  Export product data to CSV / Notion
+                  Export product data to CSV / Notion (Pro)
                 </li>
               </ul>
             </div>
 
             <button
               onClick={() => onNavigateFreeTool?.()}
-              className="mt-8 w-full py-3.5 rounded-xl border border-zinc-700 hover:bg-zinc-800 text-zinc-200 text-xs font-bold transition-all cursor-pointer"
+              className="mt-8 w-full py-3.5 rounded-xl border border-purple-500/40 bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-2 shadow-sm"
             >
-              Start Free Dashboard
+              <Sparkles className="w-4 h-4 text-purple-400" />
+              <span>Get Free Chrome Extension</span>
             </button>
           </div>
 

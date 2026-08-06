@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "GumSearch - Gumroad Product & Revenue Intelligence",
+  "version": "1.0.0",
+  "description": "Instant live creator rankings, sales power, review analytics, and competitor search directly inside Gumroad. Powered by GumSearch.com",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://*.gumroad.com/*",
+    "https://www.google.com/search*"
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "GumSearch Competitor Analytics",
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.gumroad.com/*"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_end"
+    }
+  ]
+}

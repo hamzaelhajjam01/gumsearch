@@ -73,11 +73,11 @@ export const SharedNavbar: React.FC<SharedNavbarProps> = ({
             onClick={onNavigateFreeTool}
             className={`transition-colors flex items-center gap-1 cursor-pointer ${
               activePage === 'free-tool'
-                ? 'text-pink-400 font-bold'
-                : 'text-pink-400 hover:text-pink-300 font-bold'
+                ? 'text-purple-400 font-bold'
+                : 'text-purple-400 hover:text-purple-300 font-bold'
             }`}
           >
-            <Sparkles className="w-3 h-3 text-pink-400" /> Free Tool
+            <Sparkles className="w-3 h-3 text-purple-400" /> Chrome Extension
           </button>
           <button 
             onClick={onNavigateBlog}

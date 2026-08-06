@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GumSearch - Gumroad Creator Intelligence</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      width: 310px;
+      max-height: 560px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #09090b;
+      color: #f4f4f5;
+      overflow-y: auto;
+    }
+    body::-webkit-scrollbar {
+      width: 5px;
+    }
+    body::-webkit-scrollbar-thumb {
+      background: #27272a;
+      border-radius: 4px;
+    }
+
+    /* Header */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(9, 9, 11, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 12px 14px;
+      border-bottom: 1px solid #27272a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #9333ea 0%, #4f46e5 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      box-shadow: 0 4px 10px rgba(147, 51, 234, 0.4);
+    }
+    .brand-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+      line-height: 1.1;
+    }
+    .brand-sub {
+      font-size: 9px;
+      color: #a1a1aa;
+      font-weight: 600;
+    }
+    .pro-badge {
+      background: rgba(236, 72, 153, 0.15);
+      color: #f472b6;
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      padding: 2px 7px;
+      border-radius: 10px;
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    /* Container */
+    .content {
+      padding: 12px;
+    }
+
+    /* Search Bar */
+    .search-box {
+      position: relative;
+      margin-bottom: 12px;
+    }
+    .search-input {
+      width: 100%;
+      padding: 9px 12px 9px 32px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      color: #ffffff;
+      font-size: 12px;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .search-input:focus {
+      border-color: #ec4899;
+      background: #1c1c20;
+      box-shadow: 0 0 12px rgba(236, 72, 153, 0.15);
+    }
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #71717a;
+      font-size: 12px;
+    }
+
+    /* High-Converting Generated Image Banner */
+    .sponsored-banner-wrapper {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: auto;
+      line-height: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(236, 72, 153, 0.4);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 12px rgba(236, 72, 153, 0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .sponsored-banner-wrapper:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(236, 72, 153, 0.35);
+    }
+    .sponsored-banner-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Results Header */
+    .results-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .results-title {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #a1a1aa;
+    }
+
+    /* COMPACT LIST LAYOUT FOR CARDS */
+    .results-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .creator-card {
+      background: #141417;
+      border: 1px solid #27272a;
+      border-radius: 10px;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .creator-card:hover {
+      border-color: rgba(236, 72, 153, 0.5);
+      background: #1c1c20;
+    }
+    .creator-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .creator-title-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+    .creator-name {
+      font-size: 11px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .creator-handle {
+      font-size: 9px;
+      color: #a1a1aa;
+      font-family: monospace;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .rank-pill {
+      font-size: 8px;
+      font-weight: 900;
+      padding: 1px 4px;
+      border-radius: 4px;
+      background: #27272a;
+      color: #fbbf24;
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .creator-metrics-side {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .metric-compact {
+      text-align: right;
+    }
+    .stat-label {
+      font-size: 8px;
+      color: #71717a;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .stat-val {
+      font-size: 11px;
+      font-weight: 900;
+      color: #34d399;
+      font-family: monospace;
+    }
+    .inspect-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      background: rgba(236, 72, 153, 0.1);
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      border-radius: 6px;
+      color: #ec4899;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 12px;
+      transition: all 0.2s;
+    }
+    .inspect-btn:hover {
+      background: #ec4899;
+      color: #ffffff;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 10px 14px;
+      text-align: center;
+      font-size: 9px;
+      color: #71717a;
+      border-top: 1px solid #27272a;
+      background: #09090b;
+    }
+    .footer a {
+      color: #ec4899;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="app-header">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-title">GumSearch</div>
+        <div class="brand-sub">Gumroad Intelligence & Search</div>
+      </div>
+    </div>
+    <span class="pro-badge">PRO SEARCH</span>
+  </div>
+
+  <div class="content">
+    <!-- Search Bar -->
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search-input" class="search-input" placeholder="Search niche (e.g. notion, blender, ai)...">
+    </div>
+
+    <!-- HIGH-CONVERTING SPONSORED IMAGE BANNER -->
+    <a href="https://gumsearch.com/dashboard" target="_blank" class="sponsored-banner-wrapper" id="sponsored-cta">
+      <img src="banner.png" alt="Hit $4,000/mo on Gumroad with GumSearch Pro" class="sponsored-banner-img" />
+    </a>
+
+    <!-- Live Results Section (2-Column Grid) -->
+    <div class="results-header">
+      <span class="results-title" id="results-count-title">Top Sellers</span>
+      <span style="font-size: 9px; color: #a1a1aa;">By Sales Power</span>
+    </div>
+
+    <div class="results-list" id="results-container">
+      <!-- 2 Cards per row dynamically populated via popup.js -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    Gumroad Creator Search · Powered by <a href="https://gumsearch.com" target="_blank">GumSearch.com</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>CreatorFinder</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="wordmark">
+        <span class="wordmark-bars" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <div class="wordmark-text">
+          <h1>CreatorFinder</h1>
+          <p>unofficial &middot; top sellers on Gumroad</p>
+        </div>
+      </div>
+    </header>
+
+    <form class="search-bar" id="search-form">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="notion templates, lo-fi drum kits, ui kits…"
+        autocomplete="off"
+        autofocus
+      />
+      <button type="submit" id="search-button">
+        <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+          <circle cx="7" cy="7" r="5.25" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M11 11L14.5 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span>Search</span>
+      </button>
+    </form>
+
+    <div class="status-row" id="status-row" hidden>
+      <span id="status-text"></span>
+    </div>
+
+    <main id="results" class="results">
+      <div class="empty-state" id="empty-state">
+        <div class="empty-glyph">
+          <span></span><span></span><span></span>
+        </div>
+        <p class="empty-title">Rank the top storefronts for any niche</p>
+        <p class="empty-sub">Type a keyword above — you'll get a ranked list of store URLs, nothing else.</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span>Source: Google · site:gumroad.com &middot; Not affiliated with Gumroad, Inc.</span>
+    </footer>
+  </div>
+
+  <template id="creator-card-template">
+    <article class="ticket">
+      <div class="ticket-stub">
+        <span class="stub-rank"></span>
+        <span class="stub-label">RANK</span>
+      </div>
+      <div class="ticket-body">
+        <a class="store-url" target="_blank" rel="noopener"></a>
+        <div class="ticket-meta">
+          <span class="score-pill"><span class="meta-label">score</span> <span class="score-value"></span></span>
+          <button class="copy-btn" type="button" title="Copy URL">Copy</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

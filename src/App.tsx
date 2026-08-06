@@ -13,13 +13,11 @@ import { ProfileModal } from './components/ProfileModal';
 import { PreferencesModal } from './components/PreferencesModal';
 import { LandingPage } from './components/LandingPage';
 import { CategoryLandingPage, CATEGORIES_DATA } from './components/CategoryLandingPage';
-import { CreatorFinderLandingPage } from './components/CreatorFinderLandingPage';
 import { LegalPage } from './components/LegalPage';
 import { SharedNavbar } from './components/SharedNavbar';
 import { BrowseDropdown } from './components/BrowseDropdown';
 import { ClerkHeaderAuth } from './components/ClerkHeaderAuth';
 import { HighConvertingFunnelModal } from './components/HighConvertingFunnelModal';
-import { CreatorFinderTool } from './components/CreatorFinderTool';
 import { BlogPage } from './components/BlogPage';
 import { useUser } from '@clerk/clerk-react';
 import { MOCK_PRODUCTS } from './data';
@@ -29,10 +27,9 @@ import { supabase } from './lib/supabase';
 const WHOP_CHECKOUT_URL = "https://whop.com/checkout/plan_AoctiBy7JgMkV";
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<'landing' | 'dashboard' | 'category-landing' | 'creator-finder-landing' | 'legal' | 'blog'>('landing');
+  const [currentView, setCurrentView] = useState<'landing' | 'dashboard' | 'category-landing' | 'legal' | 'blog'>('landing');
   const [activeArticleSlug, setActiveArticleSlug] = useState<string | null>(null);
   const [legalPage, setLegalPage] = useState<'terms' | 'privacy'>('terms');
-  const [dashboardTab, setDashboardTab] = useState<'database' | 'creator-finder'>('database');
   const [activeCategorySlug, setActiveCategorySlug] = useState<string>('business-and-money');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
@@ -71,7 +68,6 @@ export default function App() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const catParam = params.get('category');
-    const toolParam = params.get('tool');
     const pathname = window.location.pathname;
 
     if (pathname.startsWith('/blog')) {
@@ -80,8 +76,8 @@ export default function App() {
         setActiveArticleSlug(parts[2]);
       }
       setCurrentView('blog');
-    } else if (toolParam === 'creator-finder' || pathname === '/creator-finder' || pathname === '/free-tool') {
-      setCurrentView('creator-finder-landing');
+    } else if (pathname === '/creator-finder' || pathname === '/free-tool') {
+      setCurrentView('dashboard');
     } else if (pathname === '/terms' || pathname === '/terms-of-service') {
       setLegalPage('terms');
       setCurrentView('legal');
@@ -162,6 +158,7 @@ export default function App() {
         const { data, error } = await supabase
           .from('products')
           .select('*')
+          .limit(2000)
           .order('estimated_revenue', { ascending: false });
           
         if (error) {
@@ -223,9 +220,14 @@ export default function App() {
       );
     }
 
-    // Category filter
+    // Category filter with fuzzy matching
     if (selectedCategory !== "All") {
-      result = result.filter(p => p.category.toLowerCase() === selectedCategory.toLowerCase());
+      const catLower = selectedCategory.toLowerCase();
+      const firstWord = catLower.split(' ')[0].split('&')[0].trim();
+      result = result.filter(p => {
+        const itemCat = p.category.toLowerCase();
+        return itemCat.includes(catLower) || itemCat.includes(firstWord) || catLower.includes(itemCat);
+      });
     }
 
     // Price range filter
@@ -330,7 +332,7 @@ export default function App() {
         <LegalPage
           page={legalPage}
           onNavigateHome={() => { setCurrentView('landing'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-          onNavigateFreeTool={() => { setCurrentView('creator-finder-landing'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+          onNavigateFreeTool={() => setIsFunnelOpen(true)}
           onNavigateCategory={handleNavigateCategory}
           onLaunchDashboard={() => setCurrentView('dashboard')}
           onOpenFunnel={() => setIsFunnelOpen(true)}
@@ -353,14 +355,10 @@ export default function App() {
           onLaunchApp={() => setCurrentView('dashboard')} 
           onLaunchFreeDashboard={() => {
             setCurrentView('dashboard');
-            setDashboardTab('creator-finder');
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
           onNavigateCategory={handleNavigateCategory}
-          onNavigateFreeTool={() => {
-            setCurrentView('creator-finder-landing');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
+          onNavigateFreeTool={() => setIsFunnelOpen(true)}
           onNavigateBlog={() => {
             setCurrentView('blog');
             setActiveArticleSlug(null);
@@ -390,7 +388,7 @@ export default function App() {
           theme={theme}
           initialArticleSlug={activeArticleSlug}
           onNavigateHome={() => { setCurrentView('landing'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-          onNavigateFreeTool={() => { setCurrentView('creator-finder-landing'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+          onNavigateFreeTool={() => setIsFunnelOpen(true)}
           onNavigateCategory={handleNavigateCategory}
           onLaunchDashboard={() => setCurrentView('dashboard')}
           onOpenFunnel={() => setIsFunnelOpen(true)}
@@ -409,29 +407,7 @@ export default function App() {
     );
   }
 
-  if (currentView === 'creator-finder-landing') {
-    return (
-      <>
-        <CreatorFinderLandingPage 
-          onLaunchApp={() => setCurrentView('dashboard')} 
-          onNavigateHome={() => { setCurrentView('landing'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-          onNavigateCategory={handleNavigateCategory}
-          onNavigateBlog={() => {
-            setCurrentView('blog');
-            setActiveArticleSlug(null);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-          onOpenFunnel={() => setIsFunnelOpen(true)}
-          theme={theme} 
-        />
-        <HighConvertingFunnelModal 
-          isOpen={isFunnelOpen} 
-          onClose={() => setIsFunnelOpen(false)} 
-          checkoutUrl={WHOP_CHECKOUT_URL} 
-        />
-      </>
-    );
-  }
+
 
   if (currentView === 'category-landing') {
     return (
@@ -439,7 +415,7 @@ export default function App() {
         <SharedNavbar
           theme={theme}
           onNavigateHome={() => { setCurrentView('landing'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-          onNavigateFreeTool={() => { setCurrentView('creator-finder-landing'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+          onNavigateFreeTool={() => setIsFunnelOpen(true)}
           onNavigateCategory={handleNavigateCategory}
           onLaunchDashboard={() => setCurrentView('dashboard')}
           onOpenFunnel={() => setIsFunnelOpen(true)}
@@ -562,39 +538,7 @@ export default function App() {
       </header>
 
       <main className="max-w-[1600px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
-
-        {/* Dashboard Navigation Tabs */}
-        <div className="flex items-center gap-2 mb-6 p-1.5 bg-zinc-900/80 border border-zinc-800 rounded-2xl w-fit">
-          <button
-            onClick={() => setDashboardTab('database')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
-              dashboardTab === 'database'
-                ? 'bg-purple-600 text-white shadow-md shadow-purple-600/30'
-                : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
-            }`}
-          >
-            <Activity className="w-3.5 h-3.5" />
-            <span>Product Analytics Database</span>
-          </button>
-
-          <button
-            onClick={() => setDashboardTab('creator-finder')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
-              dashboardTab === 'creator-finder'
-                ? 'bg-[#ff2d55] text-white shadow-md shadow-pink-600/30'
-                : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
-            }`}
-          >
-            <Sparkles className="w-3.5 h-3.5 text-pink-400" />
-            <span>Gumroad CreatorFinder</span>
-          </button>
-        </div>
-
-        {dashboardTab === 'creator-finder' ? (
-          <CreatorFinderTool products={products} theme={theme} onOpenFunnel={() => setIsFunnelOpen(true)} />
-        ) : (
-          <>
-            {/* Filter Bar */}
+        {/* Filter Bar */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
               <div className="flex items-center gap-3 w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0 scrollbar-hide">
                 
@@ -776,9 +720,6 @@ export default function App() {
             theme={theme} 
           />
         </div>
-        </>
-        )}
-        
       </main>
 
       <ProductDrawer 

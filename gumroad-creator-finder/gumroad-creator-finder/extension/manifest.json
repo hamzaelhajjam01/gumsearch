@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "CreatorFinder — Top Sellers Finder",
+  "short_name": "CreatorFinder",
+  "version": "1.0.0",
+  "description": "Unofficial tool to find and rank top creator storefronts on Gumroad by keyword. Not affiliated with Gumroad, Inc.",
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["tabs"],
+  "host_permissions": [
+    "https://www.google.com/*"
+  ]
+}

@@ -1,115 +1,61 @@
--- GumSearch Supabase Seed Script (Safe Upsert)
--- Run this in your Supabase SQL Editor to safely insert/update 24 products!
+-- GumSearch Supabase Seed Script & RLS Fix
+-- Step 1: Disable RLS so public queries and scraper inserts work smoothly
+ALTER TABLE products DISABLE ROW LEVEL SECURITY;
 
+-- Step 2: Safely insert/update all 30 harvested products!
 INSERT INTO products (
     product_name, creator_name, category, price, estimated_sales, 
     estimated_revenue, avg_rating, total_reviews, star_4_percent, 
     star_3_percent, star_2_percent, opportunity_tags, ai_gap_analysis, product_url
 ) VALUES 
 (
-    'The Good Parts of AWS', 'Daniel Vassallo', 'Education', 10.0, 15659, 
-    156590.0, 4.7, 132, 8, 
-    2, 1, ARRAY['High Revenue', 'Niche Leader', 'Strong Social Proof'], 
-    'While the guide provides a solid pragmatic overview, some readers express a desire for deeper technical walkthroughs and hands-on code examples. Competitors can fill this gap by creating updated, interactive course modules that cover newer AWS services and complex real-world architectures.', 
-    'https://dvassallo.gumroad.com/l/aws-good-parts'
+    'The Complete Cavalry Guide', 'Heyalisa Motion', 'Templates', 25.0, 824, 
+    20600.0, 4.9, 20, 0, 
+    5, 0, ARRAY['Fast Growing'], 
+    'Strong market presence with positive buyer reviews.', 
+    'https://gumroad.com/l/dybmn'
 ),
 (
-    'Small Bets - Lifetime Membership', 'Daniel Vassallo', 'Business', 450.0, 7392, 
-    3326400.0, 4.9, 189, 2, 
-    0, 1, ARRAY['High Revenue', 'Niche Leader', 'Strong Community'], 
-    'While the premium price point yields impressive lifetime revenue, price-sensitive creators may seek lower-cost or tiered subscription alternatives. Competitors can target this gap by offering affordable, execution-focused micro-courses paired with specialized peer groups.', 
-    'https://dvassallo.gumroad.com/l/small-bets'
-),
-(
-    'Notion Life OS - Ultimate Second Brain Life Operating System', 'Hashim | Notion4Management', 'Education', 49.0, 0, 
-    0.0, 5.0, 3, 0, 
-    0, 0, ARRAY['Premium Pricing', 'High Rating / Low Volume', 'Niche Product'], 
-    'While the product holds perfect early ratings, comprehensive Notion operating systems often overwhelm buyers with overly complex setups and steep learning curves. Competitors can gain market share by offering modular, beginner-friendly versions paired with step-by-step video onboarding guides.', 
-    'https://gumroad.com/l/notion-life-os'
-),
-(
-    'Chat GPT Prompts for Content Writer', 'Akanksha', 'Education', 0.0, 0, 
-    0.0, 5.0, 0, 0, 
-    0, 0, ARRAY['Free Lead Magnet', 'Competitive Niche'], 
-    'As free generic ChatGPT prompt packs flood the market, buyers often struggle with vague or unrefined outputs. Competitors can differentiate by providing advanced, role-specific prompts paired with real-world output examples and custom tone-of-voice frameworks.', 
-    'https://gumroad.com/l/chatgpt-prompts'
-),
-(
-    'Notion Complete Bundle', 'Heyismail', 'Templates', 0.0, 110, 
-    0.0, 5.0, 3, 0, 
-    0, 0, ARRAY['Free Lead Magnet', 'Monetization Opportunity', 'Notion Template'], 
-    'While the product successfully uses a free price point to drive downloads and earn top ratings, it fails to monetize the user base effectively. Competitors can capture market share by offering paid, feature-rich Notion setups paired with video tutorials and automated workflows.', 
-    'https://gumroad.com/l/vgcmfi'
-),
-(
-    'The UGC Pitching System ✨💸', 'Rylie Lane', 'Templates', 47.0, 0, 
-    0.0, 5.0, 0, 0, 
-    0, 0, ARRAY['UGC Creator Tools', 'Cold Outreach Templates', 'High-Converting Pitch'], 
-    'While high response rate claims attract aspiring creators, static pitch templates often lack customization options for specific industry niches. Competitors can differentiate by providing automated follow-up sequences and contract negotiation scripts alongside basic email pitch structures.', 
-    'https://gumroad.com/l/xfovz'
-),
-(
-    'The BCBA Career Transition Toolkit (CTT)', 'Mariah Padilla', 'Templates', 147.0, 20, 
-    2940.0, 5.0, 0, 0, 
-    0, 0, ARRAY['Niche Career Pivot', 'High Ticket Template'], 
-    'While the toolkit addresses a highly specific career pivot for BCBAs, buyers often seek more than static templates, such as 1-on-1 resume reviews or interview coaching modules to justify the $147 price point. Competitors can capitalize on this by offering lower-priced entry points or including interactive elements like video walkthroughs and personalized transition roadmaps.', 
-    'https://gumroad.com/l/qxxckx'
-),
-(
-    '🌟Lifetime Membership – One Time Payment, Lifetime Access 💎 ', 'Hams AI Tech', 'Templates', 4999.99, 0, 
-    0.0, 5.0, 0, 0, 
-    0, 0, ARRAY['High Ticket Price', 'Zero Sales Traction'], 
-    'The exorbitant price tag of $4,999.99 combined with zero existing sales or social proof creates a massive trust barrier for potential buyers. Competitors can easily capture market share by offering flexible tier options, free sample templates, or transparent monthly subscriptions.', 
-    'https://gumroad.com/l/jxydga'
-),
-(
-    'Headquarters Notion Productivity Template', 'Productive Setups', 'Templates', 79.0, 0, 
-    0.0, 5.0, 194, 1, 
-    0, 0, ARRAY['High Price Point', 'Notion Ecosystem', 'Productivity Systems'], 
-    'At a premium $79 price point, there is a strong opportunity to capture price-sensitive buyers with simplified, lower-cost Notion productivity alternatives. Additionally, creators can differentiate by offering specialized onboarding support or pre-built integrations that address the steep learning curve often associated with comprehensive Notion operating systems.', 
-    'https://gumroad.com/l/hpqcg'
-),
-(
-    'Notioly - 500+ Notion-style Illustrations', 'Mary Amato', 'Templates', 39.0, 0, 
-    0.0, 5.0, 181, 0, 
-    0, 0, ARRAY['Notion Ecosystem', 'Design Assets', 'High Demand'], 
-    'While static illustration packs are popular, users often struggle with matching specific brand color palettes or finding animated variations for dynamic websites. Competitors can gain an edge by offering interactive color-customization tools, vector source files, or direct Notion integration plugins.', 
-    'https://gumroad.com/l/dxsgg'
-),
-(
-    'The Solopreneur Operating System', 'Huy Nguyen', 'Templates', 149.99, 269, 
-    40347.310000000005, 5.0, 12, 0, 
-    0, 0, ARRAY['High Ticket Template', 'Workflow Automation', 'Solopreneur Tools'], 
-    'While the product commands a premium price point with high revenue, comprehensive operating systems often suffer from steep learning curves and rigid setup structures. Competitors can capture market share by offering a modular alternative featuring built-in AI automation hooks and streamlined onboarding support at a more accessible entry price.', 
-    'https://gumroad.com/l/xhrdb'
-),
-(
-    'Gamified Life OS: Solo Leveling', 'Kevechino', 'Templates', 0.0, 1834, 
-    0.0, 5.0, 74, 3, 
+    'The VB Toolkit ($50 off)', 'LC Media Studio - by Mat Aleixo', 'Templates', 79.0, 30, 
+    2370.0, 5.0, 0, 0, 
     0, 0, ARRAY['Fast Growing'], 
-    'Gamified Life OS', 
-    'https://gumroad.com/l/mcztuh'
+    'Immediately after purchasing, you’ll receive a PDF containing a link to the Notion template. From there, you can duplicate the toolkit into your own Notion workspace and start using it right away.  It’s quick, seamless, and designed to get you up and running with minimal effort.', 
+    'https://gumroad.com/l/tvhvs'
 ),
 (
-    'Storyteller OS', 'StoryFlint', 'Templates', 97.0, 0, 
-    0.0, 4.8, 23, 0, 
-    0, 0, ARRAY['Fast Growing'], 
-    'The ultimate Notion system for writers to organize their notes and ideas for characters, plot, world building, themes, and more.', 
-    'https://gumroad.com/l/iuumxf'
-),
-(
-    'Our Empire - Notion System', 'Our Empire', 'Templates', 44.99, 0, 
-    0.0, 5.0, 3, 0, 
+    'The Art of AI 2.0︱All in One', 'Ziks ⎸ Your AI Guy', 'Templates', 500.0, 0, 
+    0.0, 5.0, 25, 0, 
     0, 0, ARRAY['Fast Growing'], 
     'Strong market presence with positive buyer reviews.', 
-    'https://gumroad.com/l/flmgzy'
+    'https://gumroad.com/l/cbate'
 ),
 (
-    'Knowledge Worker Kit and Private Community (BETA)', 'Sébastien Dubois', 'Templates', 249.99, 129, 
-    32248.710000000003, 5.0, 7, 0, 
+    'Your ADHD Mynd - Notion Template (Recently Updated!)', 'Braelyn | Mynd for ADHD', 'Templates', 45.0, 607, 
+    27315.0, 4.9, 7, 14, 
     0, 0, ARRAY['Fast Growing'], 
-    'Lifetime access to the private community, the guide, the templates, and events', 
-    'https://gumroad.com/l/pyjrr'
+    'A beautiful multi-page Notion dashboard to manage all areas of your life.', 
+    'https://gumroad.com/l/dvspii'
+),
+(
+    'Smart Finance', 'Jahaziel Guerra', 'Templates', 8.99, 0, 
+    0.0, 4.9, 34, 6, 
+    3, 0, ARRAY['Fast Growing'], 
+    'No solo administres tu dinero — domínalo. Empieza a usar Smart Finance y transforma tu vida financiera hoy mismo.', 
+    'https://gumroad.com/l/xrfsb'
+),
+(
+    'AI Voice Assistant - Complete Setup & Build Guide (Build Your Own Jarvis)', 'DHAIBuilds', 'Templates', 17.0, 0, 
+    0.0, 5.0, 1, 0, 
+    0, 0, ARRAY['Fast Growing'], 
+    'Build your own AI voice assistant from scratch - no coding experience needed!', 
+    'https://gumroad.com/l/fhnnc'
+),
+(
+    'Second Brain Template', 'Heyismail', 'Templates', 0.0, 27690, 
+    0.0, 4.9, 373, 2, 
+    2, 0, ARRAY['Niche Leader', 'Strong Social Proof', 'Free Lead Magnet'], 
+    'Strong market presence with positive buyer reviews.', 
+    'https://gumroad.com/l/piboc'
 ),
 (
     '365 Substack Notes Templates', 'Write • Build • Scale', 'Templates', 47.0, 0, 
@@ -119,72 +65,162 @@ INSERT INTO products (
     'https://gumroad.com/l/ficfih'
 ),
 (
-    'The Complete Cavalry Guide', 'Heyalisa Motion', 'Templates', 25.0, 820, 
-    20500.0, 4.9, 20, 0, 
-    5, 0, ARRAY['Niche Motion Design', 'High Revenue Margin', 'Fast Growing'], 
-    'While ratings are overwhelmingly high, the slight presence of mid-tier reviews suggests a need for deeper step-by-step guidance for absolute beginners and more frequent content updates for newer software versions. Competitors have an opportunity to offer modular project files combined with advanced procedural animation workflows to capture underserved creators.', 
-    'https://gumroad.com/l/dybmn'
-),
-(
-    'The VB Toolkit ($50 off)', 'LC Media Studio - by Mat Aleixo', 'Templates', 79.0, 30, 
-    2370.0, 5.0, 0, 0, 
-    0, 0, ARRAY['Notion Template', 'High-Ticket Digital Product', 'Workflow Automation'], 
-    'While sold at a premium price point of $79, reliance on static Notion templates creates an opportunity for competitors to offer interactive, dedicated micro-SaaS tools or lower-cost starter alternatives. Additionally, incorporating native automation scripts and video walk-throughs could resolve common onboarding friction points that static template buyers often face.', 
-    'https://gumroad.com/l/tvhvs'
-),
-(
-    'AI Voice Assistant - Complete Setup & Build Guide (Build Your Own Jarvis)', 'DHAIBuilds', 'Templates', 17.0, 0, 
+    'Knowii Knowledge System: Tools + Courses + Community', 'Sébastien Dubois', 'Templates', 0.0, 0, 
     0.0, 5.0, 1, 0, 
-    0, 0, ARRAY['AI Voice Assistants', 'No-Code Automation'], 
-    'While beginner-friendly guides attract non-technical users, many buyers encounter issues with fast-changing API dependencies and limited post-setup customization. Competitors can capture market share by offering modular, auto-updating templates alongside dedicated troubleshooting support for custom voice integrations.', 
-    'https://gumroad.com/l/fhnnc'
+    0, 0, ARRAY['Free Lead Magnet'], 
+    'Exclusive Access to the Knowii Community', 
+    'https://gumroad.com/l/xjpgo'
 ),
 (
-    'SaaS UI Kit - React & Tailwind', 'DesignMasters', 'Design Tools', 129.0, 850, 
-    109650.0, 4.9, 310, 8, 
+    'The BCBA Career Transition Toolkit (CTT)', 'Mariah Padilla, MA, BCBA', 'Templates', 147.0, 20, 
+    2940.0, 5.0, 0, 0, 
+    0, 0, ARRAY['Fast Growing'], 
+    'Strong market presence with positive buyer reviews.', 
+    'https://gumroad.com/l/qxxckx'
+),
+(
+    'Pack d''heures Production Design', 'Bter - Joffrey Jochum', 'Templates', 600.0, 0, 
+    0.0, 5.0, 0, 0, 
+    0, 0, ARRAY['Fast Growing'], 
+    'Pack d''heures de production Design', 
+    'https://gumroad.com/l/crjgo'
+),
+(
+    'Procedure Tracking Template', 'Manan Parekh, MD', 'Templates', 17.0, 108, 
+    1836.0, 5.0, 1, 0, 
+    0, 0, ARRAY['Fast Growing'], 
+    'Strong market presence with positive buyer reviews.', 
+    'https://gumroad.com/l/xvuget'
+),
+(
+    'The Solopreneur Operating System', 'Huy Nguyen', 'Templates', 149.99, 272, 
+    40797.28, 5.0, 12, 0, 
+    0, 0, ARRAY['Fast Growing'], 
+    'You''ll get...', 
+    'https://gumroad.com/l/xhrdb'
+),
+(
+    'The UGC Pitching System ✨💸', 'Rylie Lane', 'Templates', 47.0, 0, 
+    0.0, 5.0, 0, 0, 
+    0, 0, ARRAY['Fast Growing'], 
+    'the pitching system that gets 7 in 10 brands to actually reply 👀 (I can''t keep up with the replies anymore)', 
+    'https://gumroad.com/l/xfovz'
+),
+(
+    'Obsidian Starter Kit and community', 'Sébastien Dubois', 'Templates', 199.99, 1043, 
+    208589.57, 4.8, 51, 4, 
     2, 0, ARRAY['High Revenue'], 
-    'Excellent conversion rate but low top-of-funnel traffic. Opportunity to create a free ''lite'' version or lead-magnet.', 
-    'https://gumroad.com/l/saas-ui-kit'
+    'One copy of the Obsidian Starter Kit', 
+    'https://gumroad.com/l/mghmmj'
 ),
 (
-    'Minimalist Icon Pack', 'Iconic Design', 'Assets', 19.0, 5200, 
-    98800.0, 3.4, 450, 25, 
-    35, 15, ARRAY['High Sales / Low Rating'], 
-    'High sales volume driven by bundle marketing, but heavy criticism on missing SVG source files in 2 and 3 star reviews.', 
-    'https://gumroad.com/l/minimalist-icons'
+    'Headquarters Toolkit: Notion Productivity Bundle', 'Productive Setups', 'Templates', 149.0, 0, 
+    0.0, 5.0, 0, 0, 
+    0, 0, ARRAY['Fast Growing'], 
+    'Strong market presence with positive buyer reviews.', 
+    'https://gumroad.com/l/psxiq'
 ),
 (
-    'Mastering Next.js 15', 'CodeGuru', 'Education', 79.0, 2100, 
-    165900.0, 4.7, 890, 20, 
-    3, 1, ARRAY['Consistent'], 
-    'Solid educational product. A major opportunity exists to add interactive quizzes or a community Discord, which users are currently building unofficially.', 
-    'https://gumroad.com/l/mastering-nextjs'
+    'The Mental Load Offload · A 6-Module System for the Default Parent', 'Erin Kee', 'Templates', 127.0, 0, 
+    0.0, 5.0, 1, 0, 
+    0, 0, ARRAY['Fast Growing'], 
+    'the 6-module system that gets the invisible household work out of your head and into something that runs without you. built in austin by a mom of two who was carrying 78%.', 
+    'https://gumroad.com/l/lgjnc'
 ),
 (
-    'SEO Checklist 2026', 'MarketingX', 'Business', 29.0, 800, 
-    23200.0, 4.6, 150, 30, 
-    3, 1, ARRAY['Steady Growth'], 
-    'Good foundational product. Opportunity to upsell automated SEO auditing tools or a subscription for monthly algorithm updates.', 
-    'https://gumroad.com/l/seo-checklist'
+    '🌟Lifetime Membership – One-Time Payment, Lifetime Access 💎 ', 'Hams AI Tech', 'Templates', 4999.99, 0, 
+    0.0, 5.0, 0, 0, 
+    0, 0, ARRAY['Fast Growing'], 
+    'Elevate your learning experience with a Lifetime Membership! Gain unlimited access to our vast resources and enjoy the added perk of receiving exciting new content every month.', 
+    'https://gumroad.com/l/jxydga'
 ),
 (
-    '1000+ ChatGPT Prompts', 'AI Whisperer', 'AI Tools', 15.0, 18500, 
-    277500.0, 3.9, 2100, 30, 
-    20, 10, ARRAY['Volume Leader'], 
-    'Massive volume but quality perception is dropping. Many users complain about repetitive prompts. A curated, higher-priced ''Pro'' version could capture the disgruntled high-end market.', 
-    'https://gumroad.com/l/chatgpt-prompts-pack'
+    'Notion Life OS', 'Heyismail', 'Templates', 0.0, 11853, 
+    0.0, 4.9, 167, 2, 
+    1, 0, ARRAY['Niche Leader', 'Strong Social Proof', 'Free Lead Magnet'], 
+    'Strong market presence with positive buyer reviews.', 
+    'https://gumroad.com/l/kxnze'
+),
+(
+    'Notion For Businesses ', 'Heyismail', 'Business', 0.0, 964, 
+    0.0, 4.8, 29, 4, 
+    0, 0, ARRAY['Free Lead Magnet'], 
+    'Strong market presence with positive buyer reviews.', 
+    'https://gumroad.com/l/wlleu'
+),
+(
+    'The Ultimate Notion Templates Bundle​', 'MrPugo', 'Templates', 249.0, 0, 
+    0.0, 5.0, 75, 1, 
+    0, 0, ARRAY['Fast Growing'], 
+    'Strong market presence with positive buyer reviews.', 
+    'https://gumroad.com/l/isrlq'
+),
+(
+    'Our Empire - Notion System', 'Our Empire', 'Templates', 44.99, 0, 
+    0.0, 5.0, 3, 0, 
+    0, 0, ARRAY['Fast Growing'], 
+    'Strong market presence with positive buyer reviews.', 
+    'https://gumroad.com/l/flmgzy'
+),
+(
+    'Notioly - 500+ Notion-style Illustrations', 'Mary Amato', 'Templates', 39.0, 0, 
+    0.0, 5.0, 182, 0, 
+    0, 0, ARRAY['Strong Social Proof'], 
+    'Strong market presence with positive buyer reviews.', 
+    'https://gumroad.com/l/dxsgg'
+),
+(
+    'Premium 会员 / Premium Membership', '安迪兄弟在美国', 'Templates', 0.0, 0, 
+    0.0, 5.0, 0, 0, 
+    0, 0, ARRAY['Free Lead Magnet'], 
+    'You''ll get full access to all Notion research content and exclusive community support.', 
+    'https://gumroad.com/l/jnjjqy'
+),
+(
+    'FRCA Primary Toolkit', 'Anaestheasier', 'Templates', 99.0, 0, 
+    0.0, 5.0, 27, 0, 
+    0, 0, ARRAY['Fast Growing'], 
+    'Lifelong access to our customisable FRCA Primary Toolkit', 
+    'https://gumroad.com/l/VLbKG'
+),
+(
+    'Notion Complete Bundle', 'Heyismail', 'Templates', 0.0, 110, 
+    0.0, 5.0, 3, 0, 
+    0, 0, ARRAY['Free Lead Magnet'], 
+    'Strong market presence with positive buyer reviews.', 
+    'https://gumroad.com/l/vgcmfi'
+),
+(
+    'Пазл вкусов', 'Mayya Kim', 'Templates', 19.0, 0, 
+    0.0, 5.0, 8, 0, 
+    0, 0, ARRAY['Fast Growing'], 
+    'По всем вопросам можете писать на почту: @kimmimayya@gmail.com Или в мессенджеры: WhatsApp / Telegram: +82 10-8424-5226', 
+    'https://gumroad.com/l/pfvjhw'
+),
+(
+    'Gamified Life OS: Solo Leveling', 'Kevechino', 'Templates', 0.0, 1842, 
+    0.0, 5.0, 74, 3, 
+    0, 0, ARRAY['Free Lead Magnet'], 
+    'Gamified Life OS', 
+    'https://gumroad.com/l/mcztuh'
+),
+(
+    'Headquarters Notion Productivity Template', 'Productive Setups', 'Templates', 79.0, 0, 
+    0.0, 5.0, 194, 1, 
+    0, 0, ARRAY['Strong Social Proof'], 
+    'Strong market presence with positive buyer reviews.', 
+    'https://gumroad.com/l/hpqcg'
+),
+(
+    'The Ultimate Mental Models Playbook', 'Become Superhuman', 'Templates', 0.0, 7221, 
+    0.0, 4.8, 123, 2, 
+    0, 2, ARRAY['Niche Leader', 'Strong Social Proof', 'Free Lead Magnet'], 
+    'The thinking strategies used by Feynman, Musk, and Munger to solve impossible problems.   Enter whatever you wish to get the eBook. Your contribution helps us keep our content free and accessible for everyone. ❤️', 
+    'https://gumroad.com/l/ibdlh'
 )
 ON CONFLICT (product_url) DO UPDATE SET
-    product_name = EXCLUDED.product_name,
-    creator_name = EXCLUDED.creator_name,
-    category = EXCLUDED.category,
-    price = EXCLUDED.price,
     estimated_sales = EXCLUDED.estimated_sales,
     estimated_revenue = EXCLUDED.estimated_revenue,
     avg_rating = EXCLUDED.avg_rating,
     total_reviews = EXCLUDED.total_reviews,
-    star_4_percent = EXCLUDED.star_4_percent,
-    star_3_percent = EXCLUDED.star_3_percent,
-    star_2_percent = EXCLUDED.star_2_percent,
-    opportunity_tags = EXCLUDED.opportunity_tags,
     ai_gap_analysis = EXCLUDED.ai_gap_analysis;

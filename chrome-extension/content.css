@@ -1,0 +1,173 @@
+/* GumSearch Floating Intelligence Bar for Gumroad.com */
+#gumsearch-extension-bar {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999999;
+  background: linear-gradient(135deg, #18181b 0%, #09090b 100%);
+  border: 1px solid rgba(236, 72, 153, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(236, 72, 153, 0.2);
+  border-radius: 20px;
+  padding: 16px 20px;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  width: 300px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(16px);
+}
+
+#gumsearch-extension-bar.minimized {
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid rgba(236, 72, 153, 0.5);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 20px rgba(147, 51, 234, 0.4);
+}
+
+#gumsearch-extension-bar.minimized .gumsearch-header {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#gumsearch-extension-bar.minimized .gumsearch-brand span,
+#gumsearch-extension-bar.minimized .gumsearch-close-btn {
+  display: none !important;
+}
+
+#gumsearch-extension-bar.minimized .gumsearch-logo-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  box-shadow: 0 0 16px rgba(147, 51, 234, 0.6);
+}
+
+.gumsearch-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gumsearch-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 14px;
+  background: linear-gradient(90deg, #ec4899, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gumsearch-logo-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #9333ea 0%, #4f46e5 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(147, 51, 234, 0.4);
+  flex-shrink: 0;
+  -webkit-text-fill-color: initial;
+}
+
+.gumsearch-close-btn {
+  background: transparent;
+  border: none;
+  color: #a1a1aa;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+.gumsearch-close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.gumsearch-metrics-grid {
+  display: grid;
+  grid-template-cols: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.gumsearch-metric-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+}
+
+.gumsearch-metric-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #a1a1aa;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.gumsearch-metric-value {
+  font-size: 15px;
+  font-weight: 900;
+  color: #38bdf8;
+  font-family: monospace;
+}
+.gumsearch-metric-value.emerald { color: #34d399; }
+.gumsearch-metric-value.amber { color: #fbbf24; }
+.gumsearch-metric-value.pink { color: #f472b6; }
+
+.gumsearch-cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  background: linear-gradient(90deg, #9333ea, #c026d3);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.gumsearch-cta-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
+  color: #ffffff;
+}
+
+.gumsearch-backlink-footer {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 10px;
+  color: #71717a;
+}
+.gumsearch-backlink-footer a {
+  color: #ec4899;
+  text-decoration: none;
+  font-weight: 700;
+}
+.gumsearch-backlink-footer a:hover {
+  text-decoration: underline;
+}
