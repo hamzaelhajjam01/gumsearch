@@ -16,8 +16,10 @@ if hasattr(sys.stdout, 'reconfigure'):
 # Configuration & API Keys
 # ==========================================
 
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyCQpkg7d5_3gW7ngQnW-g-Q4d1kIgPrs4E")
-genai.configure(api_key=GEMINI_API_KEY)
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+if GEMINI_API_KEY:
+    genai.configure(api_key=GEMINI_API_KEY)
+
 
 SUPABASE_URL = os.environ.get("VITE_SUPABASE_URL", "https://gefzuacjuekhdlkfaned.supabase.co")
 SUPABASE_KEY = os.environ.get("VITE_SUPABASE_ANON_KEY", "sb_publishable_ISBbJtRBhQphzDMrzmbCmw_Lb2Ek2Zy")

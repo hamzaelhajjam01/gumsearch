@@ -17,8 +17,10 @@ if hasattr(sys.stdout, 'reconfigure'):
 # 1. Gemini API Key Configuration
 # Ensure you set the GEMINI_API_KEY environment variable before running
 # export GEMINI_API_KEY="your_api_key_here"
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyCQpkg7d5_3gW7ngQnW-g-Q4d1kIgPrs4E")
-genai.configure(api_key=GEMINI_API_KEY)
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+if GEMINI_API_KEY:
+    genai.configure(api_key=GEMINI_API_KEY)
+
 
 # 2. Supabase Configuration
 SUPABASE_URL = "https://gefzuacjuskhdlkfaned.supabase.co"
