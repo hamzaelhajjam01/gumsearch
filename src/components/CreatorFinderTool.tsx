@@ -668,7 +668,8 @@ function searchDatabaseFallback(kw: string, products: Product[]): CreatorResult[
         }
         const entry = dbCreatorMap.get(username)!;
         entry.products.push(p);
-        entry.totalReviews += (p.reviewsCount || Math.floor((p.salesPowerScore || 70) * 1.5));
+        entry.totalReviews += (p.reviewCount || Math.floor((p.sales || 70) * 0.2));
+
         if (p.price > entry.maxPrice) entry.maxPrice = p.price;
       }
     }

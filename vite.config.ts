@@ -62,6 +62,9 @@ function aggregateSellersFromHtml(html: string): any[] {
         sub = sName.toLowerCase().replace(/[^a-z0-9]/g, '');
       }
 
+      const sAvatar = seller.avatar_url || seller.profile_image_url || p.avatar_url || '';
+      const sVerified = !!(seller.is_verified || p.is_verified || seller.verified);
+
       const key = sUrl || sub;
       if (!sellersMap.has(key)) {
         sellersMap.set(key, {
@@ -76,7 +79,8 @@ function aggregateSellersFromHtml(html: string): any[] {
         });
       }
 
-      const entry = sellersMap.get(sUrl)!;
+      const entry = sellersMap.get(key)!;
+
       const pName = p.name || p.title || 'Digital Product';
       const price = typeof p.price_cents === 'number' ? p.price_cents / 100.0 : (typeof p.price === 'number' ? p.price : (parseFloat(p.formatted_price?.replace(/[^0-9.]/g, '')) || 0.0));
       const ratings = p.ratings || {};
