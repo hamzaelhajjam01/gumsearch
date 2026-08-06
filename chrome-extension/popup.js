@@ -287,8 +287,9 @@ document.addEventListener('DOMContentLoaded', () => {
     sponsoredCta.addEventListener('click', (e) => {
       e.preventDefault();
       const query = searchInput.value.trim();
-      const targetUrl = query ? `https://gumsearch.com/dashboard?q=${encodeURIComponent(query)}` : 'https://gumsearch.com/dashboard';
+      const targetUrl = query ? `https://gumsearch.vercel.app/?q=${encodeURIComponent(query)}` : 'https://gumsearch.vercel.app';
       window.open(targetUrl, '_blank');
     });
   }
+
 });
