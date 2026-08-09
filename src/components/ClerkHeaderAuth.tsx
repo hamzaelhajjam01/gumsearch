@@ -39,24 +39,7 @@ export const ClerkHeaderAuth: React.FC<ClerkHeaderAuthProps> = ({
     // ClerkProvider not mounted or key missing fallback
   }
 
-  // Auto-open Sign Up modal if returning from successful Whop payment
-  React.useEffect(() => {
-    if (!user && openSignUp) {
-      const params = new URLSearchParams(window.location.search);
-      const isPostPayment = 
-        params.get('payment') === 'success' || 
-        params.get('whop') === 'success' || 
-        params.get('status') === 'completed' ||
-        params.get('purchased') === 'true';
-
-      if (isPostPayment) {
-        openSignUp({
-          fallbackRedirectUrl: "/dashboard",
-          forceRedirectUrl: "/dashboard"
-        });
-      }
-    }
-  }, [user, openSignUp]);
+  const hasAccess = user?.publicMetadata?.hasAccess === true;
 
   const handleProfileClick = () => {
     if (openUserProfile) {
@@ -91,11 +74,7 @@ export const ClerkHeaderAuth: React.FC<ClerkHeaderAuthProps> = ({
     return (
       <div className="flex items-center gap-3">
         <SignedOut>
-          <SignInButton 
-            mode="modal" 
-            fallbackRedirectUrl="/dashboard" 
-            forceRedirectUrl="/dashboard"
-          >
+          <SignInButton mode="modal">
             <button className={`px-4 py-2 text-xs font-semibold rounded-xl border transition-all cursor-pointer ${
               isLight
                 ? 'border-slate-300 bg-white text-slate-800 hover:bg-slate-50'
@@ -137,16 +116,28 @@ export const ClerkHeaderAuth: React.FC<ClerkHeaderAuthProps> = ({
 
   return (
     <div className="flex items-center gap-3">
+      {!hasAccess && (
+        <a
+          href="https://whop.com/checkout/plan_AoctiBy7JgMkV"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={handleGetAccessClick}
+          className="group relative inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-purple-600/20 cursor-pointer"
+        >
+          <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+          Get Access
+        </a>
+      )}
       <UserDropdown
         userName={userName}
         userEmail={userEmail}
-        plan="Lifetime Pass"
+        plan={hasAccess ? "Lifetime Pass" : "Free Account"}
         onOpenProfile={handleProfileClick}
         onOpenPreferences={onOpenPreferences}
         onLogout={handleSignOutClick}
         theme={theme}
       />
-      {onLaunchDashboard && (
+      {hasAccess && onLaunchDashboard && (
         <button
           onClick={onLaunchDashboard}
           className="group relative inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-purple-600/20 cursor-pointer"

@@ -38,22 +38,35 @@ export default function App() {
 
   // Clerk Auth state check for automatic /dashboard redirection
   let isClerkSignedIn = false;
+  let hasPaidAccess = false;
   try {
     const clerkUser = useUser();
     isClerkSignedIn = !!clerkUser?.isSignedIn;
+    hasPaidAccess = !!clerkUser?.user?.publicMetadata?.hasAccess;
   } catch {
     // Fallback if ClerkProvider is unmounted
   }
 
-  // Redirect to Dashboard on Sign In, or Landing on Sign Out
+  // Redirect to Dashboard on Sign In (only if they have paid access), or Landing on Sign Out
   useEffect(() => {
     if (isClerkSignedIn) {
-      setCurrentView('dashboard');
+      if (hasPaidAccess) {
+        if (currentView !== 'dashboard') {
+          setCurrentView('dashboard');
+        }
+      } else {
+        // User is signed in but hasn't paid. Keep them on landing and open the funnel.
+        if (currentView === 'dashboard') {
+          setCurrentView('landing');
+          window.history.pushState({}, '', '/');
+          setIsFunnelOpen(true);
+        }
+      }
     } else if (!isClerkSignedIn && currentView === 'dashboard') {
       setCurrentView('landing');
       window.history.pushState({}, '', '/');
     }
-  }, [isClerkSignedIn]);
+  }, [isClerkSignedIn, hasPaidAccess, currentView]);
 
   // Clean URL History Synchronization for /dashboard, /, and category pages
   useEffect(() => {
@@ -104,6 +117,10 @@ export default function App() {
   };
 
   const handleLaunchDashboardWithCategory = (categoryName: string) => {
+    if (!isClerkSignedIn || !hasPaidAccess) {
+      setIsFunnelOpen(true);
+      return;
+    }
     const match = categoryName.split('&')[0].trim();
     setSelectedCategory(match);
     setCurrentView('dashboard');
@@ -319,12 +336,7 @@ export default function App() {
     (p.rating < 4.0 && p.sales > 500)
   ).length;
 
-  // Post-payment Whop URL detection
-  const isPostPaymentSuccess = 
-    window.location.search.includes('payment=success') || 
-    window.location.search.includes('whop=success') || 
-    window.location.search.includes('status=completed') ||
-    window.location.search.includes('purchased=true');
+  // (Removed bypassable post-payment URL detection here)
 
   if (currentView === 'legal') {
     return (
@@ -352,10 +364,20 @@ export default function App() {
     return (
       <>
         <LandingPage 
-          onLaunchApp={() => setCurrentView('dashboard')} 
+          onLaunchApp={() => {
+            if (isClerkSignedIn && hasPaidAccess) {
+              setCurrentView('dashboard');
+            } else {
+              setIsFunnelOpen(true);
+            }
+          }} 
           onLaunchFreeDashboard={() => {
-            setCurrentView('dashboard');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (isClerkSignedIn && hasPaidAccess) {
+              setCurrentView('dashboard');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+              setIsFunnelOpen(true);
+            }
           }}
           onNavigateCategory={handleNavigateCategory}
           onNavigateFreeTool={() => setIsFunnelOpen(true)}
@@ -452,17 +474,22 @@ export default function App() {
     );
   }
 
+  // CRITICAL SECURITY CHECK: Never render dashboard UI if they don't have access
+  if (currentView === 'dashboard' && (!isClerkSignedIn || !hasPaidAccess)) {
+    return (
+      <div className={`min-h-screen flex items-center justify-center ${theme === 'light' ? 'bg-zinc-100' : 'bg-zinc-950'}`}>
+        <div className="text-center p-8">
+          <div className="w-12 h-12 border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-zinc-500 font-medium">Verifying access...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={`min-h-screen font-sans selection:bg-purple-500/30 transition-colors duration-200 ${
       theme === 'light' ? 'bg-zinc-100 text-zinc-900' : 'bg-zinc-950 text-zinc-50'
     }`}>
-      {/* Post-Payment Whop Welcome Notification */}
-      {isPostPaymentSuccess && !isClerkSignedIn && (
-        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-2.5 px-4 text-center text-xs font-bold flex items-center justify-center gap-2 shadow-lg">
-          <Sparkles className="w-4 h-4 animate-pulse text-amber-300" />
-          <span>🎉 Payment Confirmed via Whop! Create your account in the popup below to activate Lifetime Access.</span>
-        </div>
-      )}
 
       {/* Header */}
       <header className={`sticky top-0 z-30 border-b backdrop-blur-md transition-colors ${
@@ -472,7 +499,7 @@ export default function App() {
           <div className="flex items-center gap-4 sm:gap-6">
             <button 
               onClick={() => {
-                if (isClerkSignedIn) {
+                if (isClerkSignedIn && hasPaidAccess) {
                   setCurrentView('dashboard');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
