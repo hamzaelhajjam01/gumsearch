@@ -141,7 +141,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             animate={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.03 }}
             transition={{ duration: 0.5 }}
-            onClick={() => { if (onOpenFunnel) onOpenFunnel(); else onLaunchApp(); }}
+            onClick={onLaunchApp}
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-xs font-semibold mb-8 backdrop-blur-md shadow-inner cursor-pointer"
           >
             <Sparkles className="w-3.5 h-3.5 text-purple-400" />
@@ -184,7 +184,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <motion.button
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.96 }}
-              onClick={() => { if (onOpenFunnel) onOpenFunnel(); else onLaunchApp(); }}
+              onClick={onLaunchApp}
               className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-sm rounded-xl transition-all shadow-xl shadow-purple-600/30 flex items-center justify-center gap-3 cursor-pointer"
             >
               <Play className="w-4 h-4 fill-white" />
@@ -366,7 +366,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <motion.button
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.96 }}
-                  onClick={() => { if (onOpenFunnel) onOpenFunnel(); else onLaunchApp(); }}
+                  onClick={onLaunchApp}
                   className="px-5 py-2.5 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 text-white text-xs font-black rounded-xl transition-all shadow-lg shadow-pink-500/20 cursor-pointer flex items-center justify-center gap-1.5"
                 >
                   <span>Unlock Full Competitor Database</span>
@@ -403,7 +403,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </p>
               <div className="pt-2 flex flex-wrap items-center gap-3">
                 <button
-                  onClick={() => { if (onOpenFunnel) onOpenFunnel(); else onLaunchApp(); }}
+                  onClick={onLaunchApp}
                   className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-sm shadow-lg shadow-purple-600/30 hover:scale-105 transition-all cursor-pointer flex items-center gap-2"
                 >
                   <span>Install Chrome Extension</span>
@@ -875,7 +875,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => { if (onOpenFunnel) onOpenFunnel(); else onLaunchApp(); }}
+              onClick={onLaunchApp}
               className="mt-8 w-full py-4 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-400 hover:to-indigo-500 text-white text-xs font-black transition-all shadow-xl shadow-purple-600/30 flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>Unlock GumSearch Pro Now</span>
@@ -899,7 +899,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => { if (onOpenFunnel) onOpenFunnel(); else onLaunchApp(); }}
+                onClick={onLaunchApp}
                 className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-zinc-100 text-slate-900 font-bold text-sm rounded-xl transition-all shadow-xl flex items-center justify-center gap-2 cursor-pointer"
               >
                 Get Started in 30 Seconds — Free

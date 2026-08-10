@@ -72,6 +72,27 @@ export default function App() {
     }
   }, [isClerkSignedIn, clerk]);
 
+  // Polling mechanism: If they just paid and signed in, their initial session token might 
+  // not have the `hasAccess` metadata yet because the backend webhook takes 1-2 seconds.
+  // We poll to refresh the token until they get access, so the redirect is seamless!
+  useEffect(() => {
+    let pollInterval: any;
+    if (isPostPaymentSuccess && isClerkSignedIn && !hasPaidAccess && clerk) {
+      pollInterval = setInterval(async () => {
+        try {
+          // Force Clerk to fetch the latest metadata from the server
+          await clerk.session?.getToken({ skipCache: true });
+          // Note: useUser() hook in App will automatically re-render once the token updates
+        } catch (e) {
+          console.error("Error polling session", e);
+        }
+      }, 2000);
+    }
+    return () => {
+      if (pollInterval) clearInterval(pollInterval);
+    };
+  }, [isPostPaymentSuccess, isClerkSignedIn, hasPaidAccess, clerk]);
+
   // Redirect to Dashboard on Sign In (only if they have paid access), or Landing on Sign Out
   useEffect(() => {
     if (isClerkSignedIn) {
