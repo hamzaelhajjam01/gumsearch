@@ -23,9 +23,12 @@ if GEMINI_API_KEY:
 
 
 # 2. Supabase Configuration
-SUPABASE_URL = "https://gefzuacjuskhdlkfaned.supabase.co"
-SUPABASE_KEY = "sb_publishable_ISBbJtRBhQphzDMrzmbCmw_Lb2Ek2Zy"
-supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+SUPABASE_URL = "https://gefzuacjuekhdlkfaned.supabase.co"
+SUPABASE_SERVICE_ROLE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+if not SUPABASE_SERVICE_ROLE_KEY:
+    print("❌ ERROR: You must set SUPABASE_SERVICE_ROLE_KEY as an environment variable to write to the database.")
+    sys.exit(1)
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
 
 # ==========================================
 # Gemini Prompt & Schema Definition
