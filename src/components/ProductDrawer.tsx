@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Product } from '../types';
-import { X, ExternalLink, Star, TrendingUp, BarChart3, Sparkles, Bookmark } from 'lucide-react';
+import { Product, PriceHistory } from '../types';
+import { X, ExternalLink, Star, TrendingUp, BarChart3, Sparkles, Bookmark, History } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 interface ProductDrawerProps {
   product: Product | null;
@@ -30,6 +31,36 @@ export const ProductDrawer: React.FC<ProductDrawerProps> = ({
 }) => {
   const isLight = theme === 'light';
   const isSaved = product ? savedProductIds.includes(product.id) : false;
+
+  const [priceHistory, setPriceHistory] = useState<PriceHistory[]>([]);
+  const [loadingHistory, setLoadingHistory] = useState(false);
+
+  useEffect(() => {
+    async function fetchPriceHistory() {
+      if (!product || !isOpen) return;
+      
+      setLoadingHistory(true);
+      try {
+        const { data, error } = await supabase
+          .from('product_price_history')
+          .select('*')
+          .eq('product_id', product.id)
+          .order('recorded_at', { ascending: true });
+          
+        if (error) {
+          console.error("Error fetching price history", error);
+        } else if (data) {
+          setPriceHistory(data as PriceHistory[]);
+        }
+      } catch (err) {
+        console.error("Failed to fetch price history", err);
+      } finally {
+        setLoadingHistory(false);
+      }
+    }
+    
+    fetchPriceHistory();
+  }, [product, isOpen]);
 
   return (
     <AnimatePresence>
@@ -126,40 +157,59 @@ export const ProductDrawer: React.FC<ProductDrawerProps> = ({
                 </p>
               </div>
 
-              {/* Revenue History Chart */}
+              {/* Price History Chart */}
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <h3 className={`text-sm font-semibold flex items-center gap-2 ${isLight ? 'text-slate-900' : 'text-zinc-100'}`}>
-                    <BarChart3 className={`w-4 h-4 ${isLight ? 'text-slate-500' : 'text-zinc-400'}`} />
-                    Revenue History (6mo)
+                    <History className={`w-4 h-4 ${isLight ? 'text-slate-500' : 'text-zinc-400'}`} />
+                    Price History & Discounts
                   </h3>
                 </div>
-                <div className="h-32 flex items-end justify-between gap-1.5 px-2">
-                  {[45, 60, 40, 80, 55, 95, 75, 110, 85, 100, 130, 115].map((h, i) => {
-                    const monthlySnapshot = Math.round((product.revenue / 12) * (h / 85));
-                    return (
-                      <div 
-                        key={i} 
-                        className={`rounded-t-sm w-full transition-colors cursor-crosshair group relative ${
-                          isLight ? 'bg-purple-500 hover:bg-purple-600' : 'bg-zinc-800 hover:bg-purple-500/80'
-                        }`} 
-                        style={{ height: `${Math.max(10, h * 0.7)}%` }}
-                      >
-                        <div className={`opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] py-1 px-2 rounded pointer-events-none whitespace-nowrap shadow-xl border ${
-                          isLight ? 'bg-slate-900 text-white border-slate-800' : 'bg-zinc-800 text-zinc-100 border-zinc-700'
-                        }`}>
-                          {formatCurrency(monthlySnapshot)}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className={`flex justify-between text-xs mt-2 border-t pt-2 px-2 ${
-                  isLight ? 'text-slate-500 border-slate-200 font-medium' : 'text-zinc-500 border-zinc-800/50'
-                }`}>
-                  <span>Jan</span>
-                  <span>Jun</span>
-                </div>
+                
+                {loadingHistory ? (
+                  <div className="h-32 flex items-center justify-center">
+                    <div className="w-5 h-5 border-2 border-purple-500/30 border-t-purple-500 rounded-full animate-spin"></div>
+                  </div>
+                ) : priceHistory.length <= 1 ? (
+                  <div className={`h-24 flex items-center justify-center rounded-lg border border-dashed text-xs ${isLight ? 'border-slate-200 text-slate-500 bg-slate-50' : 'border-zinc-800 text-zinc-500 bg-zinc-900/50'}`}>
+                    No historical price changes recorded yet.
+                  </div>
+                ) : (
+                  <>
+                    <div className="h-32 flex items-end justify-between gap-1.5 px-2">
+                      {priceHistory.map((historyItem, i) => {
+                        // Max price for scaling
+                        const maxPrice = Math.max(...priceHistory.map(p => p.price), product.price, 1);
+                        const heightPct = Math.max(10, (historyItem.price / maxPrice) * 100);
+                        
+                        return (
+                          <div 
+                            key={i} 
+                            className={`rounded-t-sm flex-1 transition-colors cursor-crosshair group relative ${
+                              isLight ? 'bg-indigo-500 hover:bg-indigo-600' : 'bg-zinc-700 hover:bg-indigo-500/80'
+                            }`} 
+                            style={{ height: `${heightPct}%` }}
+                          >
+                            <div className={`opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 text-[10px] py-1.5 px-2.5 rounded pointer-events-none whitespace-nowrap shadow-xl border z-10 flex flex-col items-center gap-1 ${
+                              isLight ? 'bg-slate-900 text-white border-slate-800' : 'bg-zinc-800 text-zinc-100 border-zinc-700'
+                            }`}>
+                              <span className="font-bold text-[11px]">{formatCurrency(historyItem.price)}</span>
+                              <span className={`text-[9px] ${isLight ? 'text-slate-400' : 'text-zinc-400'}`}>
+                                {new Date(historyItem.recorded_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                              </span>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <div className={`flex justify-between text-xs mt-2 border-t pt-2 px-2 ${
+                      isLight ? 'text-slate-500 border-slate-200 font-medium' : 'text-zinc-500 border-zinc-800/50'
+                    }`}>
+                      <span>{new Date(priceHistory[0].recorded_at).toLocaleDateString(undefined, { month: 'short' })}</span>
+                      <span>{new Date(priceHistory[priceHistory.length - 1].recorded_at).toLocaleDateString(undefined, { month: 'short' })}</span>
+                    </div>
+                  </>
+                )}
               </div>
 
               {/* Review Breakdown */}

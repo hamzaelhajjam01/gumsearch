@@ -20,3 +20,9 @@ export interface Product {
   productUrl?: string;
 }
 
+export interface PriceHistory {
+  id: string;
+  product_id: string;
+  price: number;
+  recorded_at: string;
+}

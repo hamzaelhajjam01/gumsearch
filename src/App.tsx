@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect, useMemo } from 'react';
-import { Search, Filter, ChevronDown, Activity, DollarSign, Target, Zap, TrendingUp, Tag, ShoppingCart, Star, AlertCircle, RotateCcw, Bookmark, ArrowUpRight, Sparkles } from 'lucide-react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { Search, Filter, ChevronDown, Activity, DollarSign, Target, Zap, TrendingUp, Tag, ShoppingCart, Star, AlertCircle, RotateCcw, Bookmark, ArrowUpRight, Sparkles, LayoutGrid, ArrowRight, Download } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { DataTable } from './components/DataTable';
 import { ProductDrawer } from './components/ProductDrawer';
@@ -23,6 +23,7 @@ import { useUser, useClerk } from '@clerk/clerk-react';
 import { MOCK_PRODUCTS } from './data';
 import { Product } from './types';
 import { supabase } from './lib/supabase';
+import { exportToCSV, exportToJSON } from './lib/export';
 
 const WHOP_CHECKOUT_URL = "https://whop.com/checkout/plan_AoctiBy7JgMkV";
 
@@ -36,6 +37,18 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [isFunnelOpen, setIsFunnelOpen] = useState(false);
   const [isPostPaymentSuccess, setIsPostPaymentSuccess] = useState(false);
+  const [showExportMenu, setShowExportMenu] = useState(false);
+  const exportMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (exportMenuRef.current && !exportMenuRef.current.contains(event.target as Node)) {
+        setShowExportMenu(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Clerk Auth state check for automatic /dashboard redirection
   let isClerkSignedIn = false;
@@ -765,6 +778,50 @@ export default function App() {
           </div>
           
           <div className="flex items-center gap-2 w-full sm:w-auto">
+            {/* Export Menu */}
+            <div className="relative" ref={exportMenuRef}>
+              <button 
+                onClick={() => setShowExportMenu(!showExportMenu)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-sm font-medium transition-colors ${
+                  theme === 'light' 
+                    ? 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50' 
+                    : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:bg-zinc-800'
+                }`}
+              >
+                <Download className="w-4 h-4" />
+                <span className="hidden sm:inline">Export</span>
+              </button>
+              
+              {showExportMenu && (
+                <div className={`absolute right-0 top-full mt-2 w-36 rounded-lg border shadow-lg overflow-hidden z-20 ${
+                  theme === 'light' ? 'bg-white border-slate-200' : 'bg-zinc-900 border-zinc-800'
+                }`}>
+                  <button 
+                    onClick={() => {
+                      exportToCSV(filteredAndSortedProducts);
+                      setShowExportMenu(false);
+                    }}
+                    className={`block w-full text-left px-4 py-2 text-sm transition-colors ${
+                      theme === 'light' ? 'hover:bg-slate-100 text-slate-700' : 'hover:bg-zinc-800 text-zinc-300'
+                    }`}
+                  >
+                    CSV (Notion)
+                  </button>
+                  <button 
+                    onClick={() => {
+                      exportToJSON(filteredAndSortedProducts);
+                      setShowExportMenu(false);
+                    }}
+                    className={`block w-full text-left px-4 py-2 text-sm transition-colors border-t ${
+                      theme === 'light' ? 'border-slate-100 hover:bg-slate-100 text-slate-700' : 'border-zinc-800 hover:bg-zinc-800 text-zinc-300'
+                    }`}
+                  >
+                    JSON
+                  </button>
+                </div>
+              )}
+            </div>
+
             <span className={`text-sm font-medium whitespace-nowrap ${theme === 'light' ? 'text-slate-500' : 'text-zinc-500'}`}>Sort by:</span>
             <select 
               value={sortBy}
