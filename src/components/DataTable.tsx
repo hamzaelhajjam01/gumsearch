@@ -173,9 +173,9 @@ export const DataTable: React.FC<DataTableProps> = ({
                   }`}
                   onClick={() => onSelectProduct(product)}
                 >
-                  <td className={cellPadding}>
-                    <div className={`font-medium ${isLight ? 'text-slate-900 font-semibold' : 'text-zinc-100'}`}>{product.name}</div>
-                    <div className={`text-xs mt-0.5 ${isLight ? 'text-slate-500 font-medium' : 'text-zinc-500'}`}>{product.creator}</div>
+                  <td className={`${cellPadding} max-w-[200px] sm:max-w-[300px] lg:max-w-[400px]`}>
+                    <div className={`font-medium truncate ${isLight ? 'text-slate-900 font-semibold' : 'text-zinc-100'}`} title={product.name}>{product.name}</div>
+                    <div className={`text-xs mt-0.5 truncate ${isLight ? 'text-slate-500 font-medium' : 'text-zinc-500'}`} title={product.creator}>{product.creator}</div>
                   </td>
                   <td className={`${cellPadding} ${isLight ? 'text-slate-700' : 'text-zinc-300'}`}>
                     <span className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-semibold ${
