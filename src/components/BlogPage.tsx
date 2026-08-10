@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { CHROME_EXTENSION_URL } from '../constants';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, 
@@ -285,12 +286,14 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                   <span>Unlock GumSearch Pro Pass ($99.99)</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
-                <button
-                  onClick={onNavigateFreeTool}
-                  className="px-6 py-3.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 text-xs font-bold rounded-xl border border-zinc-700 transition-colors cursor-pointer"
+                <a
+                  href={CHROME_EXTENSION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 text-xs font-bold rounded-xl border border-zinc-700 transition-colors cursor-pointer inline-flex items-center justify-center"
                 >
-                  Try Free Creator Finder
-                </button>
+                  Get Chrome Extension
+                </a>
               </div>
             </div>
 
@@ -526,7 +529,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
           GumSearch
         </div>
         <div className="flex items-center gap-6">
-          <button onClick={onNavigateFreeTool} className="hover:text-zinc-300 transition-colors cursor-pointer">Free Creator Finder</button>
+          <a href={CHROME_EXTENSION_URL} target="_blank" rel="noopener noreferrer" className="hover:text-zinc-300 transition-colors cursor-pointer">Chrome Extension</a>
           <button onClick={() => {
             setSelectedSlug(null);
             window.scrollTo({ top: 0, behavior: 'smooth' });

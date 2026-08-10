@@ -909,11 +909,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 onClick={onLaunchApp}
                 className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-zinc-100 text-slate-900 font-bold text-sm rounded-xl transition-all shadow-xl flex items-center justify-center gap-2 cursor-pointer"
               >
-                Get Started in 30 Seconds — Free
+                Get Instant Access
                 <ArrowRight className="w-4 h-4" />
               </motion.button>
             </div>
-            <p className="mt-4 text-[11px] text-zinc-400">No credit card required for Starter access • Instant setup</p>
+            <p className="mt-4 text-[11px] text-zinc-400">Instant setup • Verified Gumroad analytics</p>
           </div>
         </div>
       </section>
@@ -927,7 +927,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           GumSearch
         </div>
         <div className="flex items-center gap-6">
-          <button onClick={onNavigateFreeTool} className="hover:text-zinc-300 transition-colors cursor-pointer">Free Creator Finder</button>
+          <a href={CHROME_EXTENSION_URL} target="_blank" rel="noopener noreferrer" className="hover:text-zinc-300 transition-colors cursor-pointer">Chrome Extension</a>
           <a href="#bento" className="hover:text-zinc-300 transition-colors">Features</a>
           <a href="#pricing" className="hover:text-zinc-300 transition-colors">Pricing</a>
           <button onClick={() => onNavigateLegal?.('terms')} className="hover:text-zinc-300 transition-colors cursor-pointer">Terms of Service</button>
