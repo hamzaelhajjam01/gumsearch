@@ -19,7 +19,7 @@ import { BrowseDropdown } from './components/BrowseDropdown';
 import { ClerkHeaderAuth } from './components/ClerkHeaderAuth';
 import { HighConvertingFunnelModal } from './components/HighConvertingFunnelModal';
 import { BlogPage } from './components/BlogPage';
-import { useUser } from '@clerk/clerk-react';
+import { useUser, useClerk } from '@clerk/clerk-react';
 import { MOCK_PRODUCTS } from './data';
 import { Product } from './types';
 import { supabase } from './lib/supabase';
@@ -35,17 +35,42 @@ export default function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [isFunnelOpen, setIsFunnelOpen] = useState(false);
+  const [isPostPaymentSuccess, setIsPostPaymentSuccess] = useState(false);
 
   // Clerk Auth state check for automatic /dashboard redirection
   let isClerkSignedIn = false;
   let hasPaidAccess = false;
+  let clerk: any = null;
   try {
     const clerkUser = useUser();
+    clerk = useClerk();
     isClerkSignedIn = !!clerkUser?.isSignedIn;
     hasPaidAccess = !!clerkUser?.user?.publicMetadata?.hasAccess;
   } catch {
     // Fallback if ClerkProvider is unmounted
   }
+
+  // Detect post-payment return from Whop
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get('payment') === 'success' || searchParams.has('receipt_id') || searchParams.has('payment_intent')) {
+      setIsPostPaymentSuccess(true);
+      
+      // If they are not signed in, prompt them to create an account
+      if (!isClerkSignedIn && clerk) {
+        // Wait a tiny bit for Clerk to fully initialize its modals
+        setTimeout(() => {
+          if (clerk.openSignUp) {
+            clerk.openSignUp();
+          }
+        }, 500);
+      }
+      
+      // Clean up the URL so it doesn't stay there on refresh
+      const newUrl = window.location.pathname;
+      window.history.replaceState({}, '', newUrl);
+    }
+  }, [isClerkSignedIn, clerk]);
 
   // Redirect to Dashboard on Sign In (only if they have paid access), or Landing on Sign Out
   useEffect(() => {
@@ -363,6 +388,12 @@ export default function App() {
   if (currentView === 'landing') {
     return (
       <>
+        {isPostPaymentSuccess && !isClerkSignedIn && (
+          <div className="bg-emerald-500/10 border-b border-emerald-500/20 text-emerald-600 px-4 py-3 text-center text-sm font-semibold flex items-center justify-center gap-2">
+            <Sparkles className="w-4 h-4" />
+            Payment Successful! Please create your account in the popup below to claim your Lifetime Access.
+          </div>
+        )}
         <LandingPage 
           onLaunchApp={() => {
             if (isClerkSignedIn && hasPaidAccess) {

@@ -68,6 +68,7 @@
   font-size: 14px;
   background: linear-gradient(90deg, #ec4899, #a855f7);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -101,7 +102,7 @@
 
 .gumsearch-metrics-grid {
   display: grid;
-  grid-template-cols: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   margin-bottom: 14px;
 }

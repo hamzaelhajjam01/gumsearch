@@ -112,14 +112,12 @@ body {
   list-style-type: disc;
   padding-left: 1.5rem;
   margin-bottom: 1.5rem;
-  space-y: 0.5rem;
 }
 
 .article-body ol {
   list-style-type: decimal;
   padding-left: 1.5rem;
   margin-bottom: 1.5rem;
-  space-y: 0.5rem;
 }
 
 .article-body li {
@@ -152,7 +150,7 @@ body {
   font-size: 0.9rem;
   color: #fde047;
   display: flex;
-  items-center: center;
+  align-items: center;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
   text-transform: uppercase;
