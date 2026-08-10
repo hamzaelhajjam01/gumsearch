@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CHROME_EXTENSION_URL } from '../constants';
 import { 
   ArrowRight, CheckCircle2, DollarSign, Sparkles, 
   TrendingUp, Zap, Star, ChevronRight, Play, Cpu, Database, 
@@ -191,15 +192,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               Explore Live Database
             </motion.button>
 
-            <motion.button
+            <motion.a
+              href={CHROME_EXTENSION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.03, y: -1 }}
               whileTap={{ scale: 0.97 }}
-              onClick={onNavigateFreeTool}
-              className="w-full sm:w-auto px-8 py-4 bg-pink-500/10 border border-pink-500/30 text-pink-300 font-bold text-sm rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer hover:bg-pink-500/20"
+              className="w-full sm:w-auto px-8 py-4 bg-pink-500/10 border border-pink-500/30 text-pink-300 font-bold text-sm rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer hover:bg-pink-500/20 text-center"
             >
-              <Sparkles className="w-4 h-4 text-pink-400" />
-              Try Free Creator Finder
-            </motion.button>
+              <Sparkles className="w-4 h-4 text-pink-400 shrink-0" />
+              Get Chrome Extension Free
+            </motion.a>
           </motion.div>
 
           {/* Social Proof Line */}
@@ -402,13 +405,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 Inject real-time sales volume estimates, verified review power, and pricing insights directly into any Gumroad storefront or product page.
               </p>
               <div className="pt-2 flex flex-wrap items-center gap-3">
-                <button
-                  onClick={onLaunchApp}
+                <a
+                  href={CHROME_EXTENSION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-sm shadow-lg shadow-purple-600/30 hover:scale-105 transition-all cursor-pointer flex items-center gap-2"
                 >
                   <span>Install Chrome Extension</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </a>
                 <button
                   onClick={onLaunchApp}
                   className={`px-6 py-3 rounded-xl font-bold text-sm border transition-all cursor-pointer ${
@@ -819,13 +824,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </ul>
             </div>
 
-            <button
-              onClick={() => onNavigateFreeTool?.()}
+            <a
+              href={CHROME_EXTENSION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-8 w-full py-3.5 rounded-xl border border-purple-500/40 bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-2 shadow-sm"
             >
               <Sparkles className="w-4 h-4 text-purple-400" />
               <span>Get Free Chrome Extension</span>
-            </button>
+            </a>
           </div>
 
           {/* Pro Unlimited Plan */}

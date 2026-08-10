@@ -1,4 +1,5 @@
 import React from 'react';
+import { CHROME_EXTENSION_URL } from '../constants';
 import { Activity, Sparkles } from 'lucide-react';
 import { BrowseDropdown } from './BrowseDropdown';
 import { ClerkHeaderAuth } from './ClerkHeaderAuth';
@@ -69,16 +70,14 @@ export const SharedNavbar: React.FC<SharedNavbarProps> = ({
             onOpenFunnel={onOpenFunnel}
             theme={theme} 
           />
-          <button 
-            onClick={onNavigateFreeTool}
-            className={`transition-colors flex items-center gap-1 cursor-pointer ${
-              activePage === 'free-tool'
-                ? 'text-purple-400 font-bold'
-                : 'text-purple-400 hover:text-purple-300 font-bold'
-            }`}
+          <a 
+            href={CHROME_EXTENSION_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors flex items-center gap-1 cursor-pointer text-purple-400 hover:text-purple-300 font-bold"
           >
             <Sparkles className="w-3 h-3 text-purple-400" /> Chrome Extension
-          </button>
+          </a>
           <button 
             onClick={onNavigateBlog}
             className={`transition-colors cursor-pointer ${
