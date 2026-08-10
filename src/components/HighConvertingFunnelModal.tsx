@@ -356,12 +356,19 @@ export const HighConvertingFunnelModal: React.FC<HighConvertingFunnelModalProps>
                 </div>
 
                 {/* Value Offer Stack */}
-                <div className="p-4 bg-zinc-900/80 border border-zinc-800 rounded-2xl space-y-2.5">
+                <div className="p-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl space-y-2.5">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-zinc-200">GumSearch Lifetime Access Pass ($99.99) Includes:</span>
-                    <span className="text-xs text-zinc-500 line-through">$249</span>
+                    <span className="text-xs font-extrabold text-amber-300">🔥 Launch Offer — First 20 Users Only:</span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-xs text-zinc-500 line-through">$99</span>
+                      <span className="text-sm font-black text-emerald-400">$49</span>
+                    </div>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-zinc-300">
+                  <div className="text-[11px] text-amber-200/90 font-semibold flex items-center justify-between border-b border-amber-500/20 pb-2">
+                    <span>⚡ 13 of 20 spots claimed</span>
+                    <span className="text-amber-400 font-extrabold">Only 7 Spots Left!</span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-zinc-300 pt-1">
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-3.5 h-3.5 text-purple-400 shrink-0" />
                       <span>Real-Time Revenue & Unit Sales</span>
@@ -387,10 +394,10 @@ export const HighConvertingFunnelModal: React.FC<HighConvertingFunnelModalProps>
                     href={checkoutUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-4 px-5 sm:px-6 bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-500 hover:from-purple-500 hover:to-indigo-500 text-white font-extrabold text-sm sm:text-base rounded-2xl transition-all shadow-xl shadow-purple-600/30 cursor-pointer flex items-center justify-center gap-2.5 group text-center leading-snug"
+                    className="w-full py-4 px-5 sm:px-6 bg-gradient-to-r from-amber-500 via-purple-600 to-indigo-600 hover:from-amber-400 hover:to-indigo-500 text-white font-extrabold text-sm sm:text-base rounded-2xl transition-all shadow-xl shadow-purple-600/30 cursor-pointer flex items-center justify-center gap-2.5 group text-center leading-snug"
                   >
                     <span>
-                      Unlock All {dynamicMetrics.oppCount} Opportunities for "{activeKeyword.length > 24 ? activeKeyword.slice(0, 22) + '...' : activeKeyword}" <span className="text-purple-200">($99.99)</span>
+                      Claim Launch Offer — $49 (Only 7 Left) <span className="text-amber-200 line-through text-xs font-normal">$99</span>
                     </span>
                     <ArrowRight className="w-5 h-5 shrink-0 transition-transform group-hover:translate-x-1" />
                   </a>

@@ -837,25 +837,29 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
           {/* Pro Unlimited Plan */}
           <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-purple-900/40 via-indigo-900/30 to-zinc-900/80 border-2 border-purple-500/60 shadow-2xl shadow-purple-500/10 flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-0 right-0 px-4 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold text-[10px] uppercase tracking-widest rounded-bl-2xl shadow-md">
-              Most Popular
+            <div className="absolute top-0 right-0 px-4 py-1.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white font-bold text-[10px] uppercase tracking-widest rounded-bl-2xl shadow-md flex items-center gap-1">
+              <span>🔥 Launch Offer • 7 Spots Left</span>
             </div>
 
             <div>
-              <div className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40 mb-4">
-                GumSearch Pro
+              <div className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 mb-4">
+                First 20 Users Launch Discount
               </div>
               <h3 className="text-2xl font-bold text-white">Full Intelligence Suite</h3>
-              <p className="mt-2 text-xs text-zinc-300">Unlock the complete 100,000+ product archive & AI opportunity engine.</p>
+              <p className="mt-2 text-xs text-zinc-300">Unlock the complete 100,000+ product archive & AI opportunity engine with zero recurring fees.</p>
 
-              <div className="mt-6 flex items-baseline gap-1">
-                <span className="text-4xl font-black text-white">
-                  {billingCycle === 'annual' ? '$29' : '$39'}
-                </span>
-                <span className="text-xs text-zinc-400">/ month, billed {billingCycle}</span>
+              <div className="mt-6 flex items-baseline gap-2">
+                <span className="text-xl font-bold text-zinc-500 line-through">$99</span>
+                <span className="text-4xl font-black text-white">$49</span>
+                <span className="text-xs text-emerald-400 font-bold">one-time (Lifetime)</span>
               </div>
 
-              <ul className="mt-8 space-y-3 text-xs text-zinc-200">
+              <div className="mt-3 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-[11px] text-amber-200 flex items-center justify-between">
+                <span>⚡ <strong>13 of 20</strong> launch spots claimed</span>
+                <span className="font-extrabold text-amber-400">Only 7 Left!</span>
+              </div>
+
+              <ul className="mt-6 space-y-3 text-xs text-zinc-200">
                 <li className="flex items-center gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0" />
                   <strong>Unlimited</strong> access to 100,000+ products
@@ -883,9 +887,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={onLaunchApp}
-              className="mt-8 w-full py-4 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-400 hover:to-indigo-500 text-white text-xs font-black transition-all shadow-xl shadow-purple-600/30 flex items-center justify-center gap-2 cursor-pointer"
+              className="mt-8 w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 via-purple-600 to-indigo-600 hover:from-amber-400 hover:to-indigo-500 text-white text-xs font-black transition-all shadow-xl shadow-purple-600/30 flex items-center justify-center gap-2 cursor-pointer"
             >
-              <span>Unlock GumSearch Pro Now</span>
+              <span>Claim Launch Offer — $49 (7 Left)</span>
               <ArrowRight className="w-4 h-4" />
             </motion.button>
           </div>
