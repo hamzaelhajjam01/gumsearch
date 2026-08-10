@@ -101,6 +101,22 @@ def discover_product_urls(target_count: int = 1500) -> list:
 # 2. Extractor & Gemini AI Gap Analysis
 # ==========================================
 
+def determine_category(name: str, current_cat: str) -> str:
+    text = name.lower()
+    if any(k in text for k in ["ai", "chatgpt", "midjourney", "prompt", "llm", "stable diffusion"]):
+        return "AI Tools"
+    elif any(k in text for k in ["font", "icon", "ui", "3d", "blender", "figma", "brush", "preset", "lut", "wallpaper", "design"]):
+        return "Design Tools"
+    elif any(k in text for k in ["course", "guide", "masterclass", "learn", "how to", "book", "tutorial"]):
+        return "Education"
+    elif any(k in text for k in ["business", "money", "startup", "marketing", "sales", "saas", "agency", "freelance"]):
+        return "Business"
+    elif any(k in text for k in ["template", "notion", "planner", "tracker", "excel", "sheet", "dashboard"]):
+        return "Templates"
+    elif any(k in text for k in ["asset", "pack", "audio", "vst", "sample", "midi"]):
+        return "Assets"
+    return current_cat
+
 def extract_product_data(html_content: str, url: str) -> dict:
     """Extracts product metrics + Gemini AI gap analysis."""
     extracted = None
@@ -147,7 +163,7 @@ def extract_product_data(html_content: str, url: str) -> dict:
                 extracted = {
                     "product_name": prod.get("name") or "Unknown Product",
                     "creator_name": prod.get("seller", {}).get("name") or "Unknown Creator",
-                    "category": "Business" if "business" in (prod.get("name") or "").lower() else "Templates",
+                    "category": determine_category(prod.get("name") or "Unknown Product", "Business" if "business" in (prod.get("name") or "").lower() else "Templates"),
                     "price": price,
                     "estimated_sales": sales,
                     "estimated_revenue": revenue,
